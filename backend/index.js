@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 /* ==================== */
 
 const PORT = process.env.PORT || 8181;
-const workFactor = confog.WORK_FACTOR;
+const workFactor = config.WORK_FACTOR;
 
 
 
