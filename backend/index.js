@@ -5,7 +5,8 @@
 const   express = require('express'),
         app = express(),
         bodyParser = require('body-parser'),
-        bcrypt = require('bcrypt');
+        bcrypt = require('bcrypt'),
+        config = require('./config');
 
 // DB
 const knex = require('knex')({
@@ -45,7 +46,7 @@ app.use((req, res, next) => {
 /* ==================== */
 
 const PORT = process.env.PORT || 8181;
-const workFactor = 12;
+const workFactor = confog.WORK_FACTOR;
 
 
 
