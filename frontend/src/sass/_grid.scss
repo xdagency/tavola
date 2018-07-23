@@ -1,0 +1,114 @@
+/*
+    Grid
+*/
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    &.jc--sa { justify-content: space-around; }
+    &.jc--sb { justify-content: space-between; }
+    &.jc--ce { justify-content: center; }
+    &.ai--st { align-items: flex-start; }
+    &.ai--en { align-items: flex-end; }
+    &.ai--ce { align-items: center; }
+    &.ai--st { align-items: stretch; }
+}
+
+.row {
+    position: relative;
+    margin-bottom: $gutter;
+    overflow: hidden;
+
+    /* when width is greater than max-width + gutters + scrollbar */
+    @include bpany($page--maxwidth + ($gutter * 2) + 8px) {
+        margin-right: -$gutter;
+        margin-left: -$gutter;
+    }
+}
+
+.col {
+    position: relative;
+    padding: $gutter;
+    width: 100%; /* no bp all cols 100% width */
+    min-height: 1px;
+    float: left;
+
+    &.as--ce { align-self: center; }
+
+    // testing
+    // border: 1px solid tomato;
+    // background: pink;
+}
+
+// Left aligned column
+.col-left {
+    float: left;
+}
+
+// Right aligned column
+.col-right {
+    float: right;
+}
+
+// Centred column
+.col-center {
+    float: none;
+    margin: 0 auto;
+}
+
+
+/* Tiny Columns (np bp) */
+.xs9 { width: 75%; }
+.xs8 { width: 66.666%; }
+.xs6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+.xs4 { width: 33.333%; &:nth-child(3n+1) { clear: left; } }
+.xs3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+
+
+/* Small Columns */
+@include bp(break-sm) {
+
+    .sm12 { width: 100%; }
+    .sm9 { width: 75%; }
+    .sm8 { width: 66.6666%; }
+    .sm6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+    .sm4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
+    .sm3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+
+    .all6 { width: 50%; }
+    .all12 { width: 100%; }
+
+}
+
+/* Medium Columns */
+@include bp(break-md) {
+
+    .md12 { width: 100%; }
+    .md10 { width: 83.3333%; }
+    .md9 { width: 75%; }
+    .md8 { width: 66.6666%; }
+    .md7 { width: 58.3333%; }
+    .md6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+    .md5 { width: 41.6666%; }
+    .md4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
+    .md3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+    .md2 { width: 16.6666%; }
+
+}
+
+/* Large Columns */
+@include bp(break-lg) {
+
+    .lg12 { width: 100%; }
+    .lg10 { width: 83.3333%; }
+    .lg9 { width: 75%; }
+    .lg8 { width: 66.6666%; }
+    .lg7 { width: 58.3333%; }
+    .lg6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+    .lg5 { width: 41.6666%; }
+    .lg4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
+    .lg3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+    .lg2 { width: 16.6666%; }
+
+}

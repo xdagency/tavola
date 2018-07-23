@@ -1,0 +1,240 @@
+/*
+    Layout
+*/
+
+html, body {
+    height: 100%;
+    background: $color__1;
+}
+
+// Main structure
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 95%;
+    min-height: 100vh;
+    height: 100%;
+    background: white;
+    box-shadow: 11px 0px 42px -10px rgba(0,0,0,0.25);
+    @include bp(break-xl) {
+        flex-direction: row;
+    }
+}
+
+.wrapper {
+    padding: $padding--sm $padding--sm $padding--md;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-position: center 80%;
+    min-height: 100%; min-width: 100%;
+    // border: 1px solid black;
+    @include bp(break-sm) {
+        padding: $padding--md $padding--md $padding--md+32px;
+    }
+    @include bp(break-md) {
+        background-size: 55%;
+        padding: $padding--lg $padding--lg $padding--lg+32px;
+    }
+}
+
+.bg {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include bp(break-md) {
+    }
+}
+
+.page__content, .page__sidebar {
+    position: relative;
+}
+
+.page__content {
+    // background: tomato;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    // border: 1px solid tomato;
+    background-color: #f5f3f3;
+    @include bp(break-xl) {
+        display: block;
+        width: 69%;
+    }
+}
+
+.page__sidebar {
+    // background: yellow;
+    width: 100%;
+    padding: $padding--sm $padding--sm $padding--md;
+    @include bp(break-xl) {
+        width: 31%;
+        padding: $padding--lg $padding--lg $padding--lg+32px;
+    }
+}
+
+header.page__header {
+    width: 100%;
+    padding: $padding--xs;
+    background: $color__2;
+    box-shadow: 0px 28px 64px -12px rgba(0,0,0,0.2),
+                0px 9px 24px -4px rgba(0,0,0,0.2);
+    max-width: 420px;
+    margin: 0 auto;
+    @include bp(break-md) {
+        padding: $padding--sm;
+    }
+}
+
+
+// Navigation
+
+nav.main {
+    padding: $padding--xs 0 0;
+    > ul {
+        > li {
+            position: relative;
+            display: block;
+            padding: $padding--xxs 0;
+            > a {
+                display: block;
+                font-family: $sans;
+                color: rgba(255,255,255,0.75);
+                font-size: 1rem;
+                text-decoration: none;
+                transition: all 0.22s ease-in-out;
+                &:before {
+                    content: " ";
+                    opacity: 0;
+                    transition: all 0.22s ease-in-out;
+                    position: absolute;
+                    border-top: 1px solid white;
+                    width: 24px;
+                    left: -30px;
+                    top: 6px;
+                }
+                &.active {
+                    color: white;
+                    transform: translateX(30px);
+                    &:before {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    @include bp(break-md) {
+        padding: $padding--sm 0 0;
+    }
+    @include bp(break-lg) {
+        padding: $padding--md 0 0;
+    }
+}
+
+// Sub nav
+
+nav.sub {
+    margin-top: $padding--xs+4px;
+    max-width: 420px;
+    margin: $padding--xs+4px auto 0;
+    > ul {
+        > li {
+            display: inline-block;
+            margin: 0 10px 10px 0;
+            > a {
+                font-family: $sans;
+                color: lighten($color__2, 50%);
+            }
+        }
+    }
+}
+
+
+// Cards
+
+.card {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0px 28px 64px -12px rgba(0,0,0,0.2),
+                0px 9px 24px -4px rgba(0,0,0,0.2);
+    background-color: $color__white;
+    margin: 0 auto $padding--sm;
+    max-width: 420px;
+    @include bp(break-md) {
+        flex-direction: row;
+        max-width: 740px;
+    }
+    &.card--center {
+
+    }
+
+    .card__image {
+        display: flex;
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        background-color: $color__3;
+        @include bp(break-md) {
+            width: 40%;
+        }
+        // border: 1px solid tomato;
+        > img {
+            position: relative;
+            align-self: center;
+            display: block;
+            width: 84%;
+            margin: 8% auto 0;
+            transform: scale(1.06);
+            box-shadow: 0px 21px 64px -4px rgba(0,0,0,0.44);
+            @include bp(break-md) {
+                align-self: center;
+                width: 100%;
+                margin: 0;
+                left: $padding--sm;
+            }
+        }
+    }
+
+    .card__content {
+        width: 100%;
+        padding: $padding--xs+4px;
+        @include bp(break-md) {
+            padding: $padding--sm+8px;
+            width: 60%;
+        }
+        &.card__content--pad-left {
+            @include bp(break-md) {
+                padding-left: $padding--xl;
+            }
+        }
+        &.card__content--full {
+            width: 100% !important;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.card--alert {
+        background: tomato;
+        h1, h2, h3, p, a {
+            color: $color__white;
+        }
+    }
+
+    &.card--border-top {
+        border-top: 4px solid $color__1;
+    }
+}
+
+
+// Game Details
+

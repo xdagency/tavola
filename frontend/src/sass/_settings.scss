@@ -1,0 +1,103 @@
+/*
+    Settings
+*/
+
+
+/* Colours */
+
+$color__1: #e2b154; // rgb(228,229,196)
+$color__2: #0c0d0c  ; // rgb(12,13,12)
+$color__3: #3f0db2; // rgb(63,13,178)
+$color__white: #f9f9f9;
+
+$color__facebook: #4e68a0;
+$color__twitter: #22a0f2;
+$color__linkedin: #0083be;
+$color__pinterest: #bc1122;
+$color__instagram: #000000;
+
+
+/* Font families */
+$serif: 'Song Myung', Georgia, serif;
+$sans: 'Alegreya Sans', Helvetica, sans-serif;
+
+
+/* Spacing */
+
+$gutter: 16px;
+
+$padding--xxs: 8px;
+$padding--xs: 16px;
+$padding--sm: 32px;
+$padding--md: 48px;
+$padding--lg: 64px;
+$padding--xl: 96px;
+$padding--xxl: 132px;
+
+$page--maxwidth: 1140px;
+$sidenav--maxwidth: 290px;
+
+
+/* Z-index */
+
+$zNormal: 1;
+$zElementLink: 8; // the link that will cover a card or element to make it a hotspot
+$zOverContent: 10;
+$zTopLink: 18; // link that needs to go "over" the element link
+$zUnderNav: 47; // just under the main nav
+$zNav: 49; // main navigation
+$zOverNav: 99;
+$zOverAll: 999; // mobile nav button, etc
+
+
+/* Sizing and measurements */
+
+$featured-image-scale-amount: 1.1;
+$card-scale-amount: 1;
+
+
+/* Breakpoints */
+
+$breakpoints: (
+    break-sm: 480px,
+    break-md: 748px,
+    break-lg: 980px,
+    break-xl: 1140px
+);
+
+
+/* Mixins */
+
+@mixin bp($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;    
+        }
+    }
+    @else {
+         @warn "Unfortunately, no value could be retrieved from breakpoint map.";
+    }
+}
+
+@mixin bpany($width, $height: null) {
+    @if ($height) {
+        @media screen and (min-width: $width) and (min-height: $height) {
+            @content;
+        }
+    } @else {
+        @media screen and (min-width: $width) {
+            @content;
+        }
+    }
+}
+
+@mixin center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+@mixin fill-image {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
