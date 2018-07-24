@@ -29,7 +29,7 @@
 
 .col {
     position: relative;
-    padding: $gutter;
+    padding: 0 $gutter $gutter $gutter;
     width: 100%; /* no bp all cols 100% width */
     min-height: 1px;
     float: left;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactDOM } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
@@ -32,7 +32,7 @@ class GameDetails extends Component {
     componentDidMount() {
 
         // Set the page title
-        document.title = "Recommended Game - Title Here";
+        document.title = "Recommended Game";
 
         // Hit server and find a game when component mounts
         // only if there is no game already in state
@@ -121,7 +121,23 @@ class GameDetails extends Component {
 
             this.setState({ result__rankName: rankName });
 
+            document.title = "Recommended Game - " + this.state.result__name;
+
         });
+    }
+
+
+    /* ==================== */
+    // NEW GAME f-
+    /* ==================== */
+
+    newGame = () => {
+
+        this.gameCard = React.createRef();
+        window.scrollTo(300, this.gameCard.offsetTop);
+
+        this.selectGame();
+
     }
 
 
@@ -161,7 +177,7 @@ class GameDetails extends Component {
 
                         <h3 className="a--fade-up">WE RECOMMEND</h3>
 
-                        <div className="card a--fade-up a--delay-1">
+                        <div className="card a--fade-up a--delay-1" ref={this.gameCard}>
                             
                             <figure className="card__image">
                                 <img src={this.state.result__image} title="" alt="" width="" />
@@ -190,7 +206,7 @@ class GameDetails extends Component {
                         <div className="card card--border-top a--fade-up a--delay-2">
                             <section className="card__content card__content--full">
                                 <div className="btn__container">
-                                    <div className="btn btn--alt"><button onClick={this.selectGame}><FontAwesomeIcon icon="sync-alt" /> Different Game</button></div>
+                                    <div className="btn btn--alt"><button onClick={this.newGame}><FontAwesomeIcon icon="sync-alt" /> Different Game</button></div>
                                     <div className="btn btn--alt"><button disabled><FontAwesomeIcon icon="heart" /> Save Game</button></div>
                                 </div>
                             </section>

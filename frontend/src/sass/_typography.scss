@@ -29,13 +29,13 @@ h1.card__heading {
 
 h2 {
     font-family: $serif;
-    font-size: 1.55rem;
+    font-size: 1.9rem;
     color: $color__2;
     line-height: 100%;
     margin: 0 0 $padding--xs;
     letter-spacing: -0.033rem;
     @include bp(break-sm) {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     @include bp(break-md) {
         font-size: 2.55rem;
@@ -67,17 +67,30 @@ h3 {
     }
 }
 
+h4 {
+}
+
+h5 {
+    font-family: $sans;
+    font-size: 0.925rem;
+    color: darken($color__1, 10%);
+    padding: 0;
+    @include bp(break-md) {
+        font-size: 0.95rem;
+    }
+}
+
 p {
     font-family: $sans;
     font-weight: 300;
     color: $color__2;
     line-height: 144%;
-    font-size: 1.05rem;
+    font-size: 1.06rem;
     @include bp(break-sm) { font-size: 1.15rem; }
     @include bp(break-md) { font-size: 1.25rem; }
     @include bp(break-lg) { font-size: 1.3rem; }
     &.data {
-        font-size: 0.975rem;
+        font-size: 0.98rem;
         @include bp(break-md) { font-size: 1.1rem; }
     }
     strong { font-weight: 700; }
@@ -89,16 +102,19 @@ p {
             color: $color__1;
         }
     }
+
+    &.small {
+        font-family: $sans;
+        font-size: 0.925rem;
+        padding: 0;
+        @include bp(break-md) {
+            font-size: 0.95rem;
+        }
+    }
 }
 
-.small {
-    font-family: $sans;
-    font-size: 0.84rem;
-    color: darken($color__1, 10%);
-    padding: 0;
-    @include bp(break-md) {
-        font-size: 0.9rem;
-    }
+h1 + p, h2 + p, h3 + p {
+    padding-top: $padding--sm;
 }
 
 .data-icon {
@@ -106,14 +122,11 @@ p {
     color: #ddd;
 }
 
-
 .brand {
     font-family: $serif;
     color: #999;
     font-size: 28px;
 }
-
-
 
 .text-center { text-align: center; }
 .text-right { text-align: right; }

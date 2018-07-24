@@ -24,7 +24,7 @@ class App extends Component {
         submitted: false,
 
         // server stuff
-        serverUrl: 'http://localhost:8181',
+        serverUrl: 'https://tavolaapp.herokuapp.com',
 
         // data
         resultsArr: []
@@ -119,7 +119,7 @@ const Header = () => {
         </header>
         <nav className="sub">
           <ul>
-            <li><a href="#0">Contact</a></li>
+            <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
             <li><NavLink to="/terms">Terms of Use</NavLink></li>
             <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
           </ul>

@@ -1,0 +1,100 @@
+/* 
+    Cards
+*/
+
+
+// Main Card
+
+.card {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0px 28px 64px -12px rgba(0,0,0,0.2),
+                0px 9px 24px -4px rgba(0,0,0,0.2);
+    background-color: $color__white;
+    margin: 0 auto $padding--sm;
+    max-width: 420px;
+    @include bp(break-md) {
+        flex-direction: row;
+        max-width: 740px;
+    }
+
+    // When card should be directly in middle
+    &.card--center {
+
+    }
+
+    // Image container in card
+    .card__image {
+        display: flex;
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        background-color: $color__3;
+        @include bp(break-md) {
+            width: 40%;
+        }
+        
+        // Card <img>
+        > img {
+            position: relative;
+            align-self: center;
+            display: block;
+            width: 84%;
+            margin: 8% auto 0;
+            transform: scale(1.06);
+            box-shadow: 0px 21px 64px -4px rgba(0,0,0,0.44);
+            background-color: lighten($color__3, 55%);
+            @include bp(break-md) {
+                align-self: center;
+                width: 100%;
+                margin: 0;
+                left: $padding--sm;
+            }
+        }
+    }
+
+    // Card content container
+    .card__content {
+        width: 100%;
+        padding: $padding--xs+4px;
+        @include bp(break-md) {
+            padding: $padding--sm+8px;
+            width: 60%;
+        }
+        @include bp(break-lg) {
+            padding: $padding--sm+9px $padding--md;
+        }
+        &.card__content--pad-left {
+            @include bp(break-md) {
+                padding-left: $padding--xl;
+            }
+        }
+        &.card__content--full {
+            width: 100% !important;
+        }
+    }
+
+    // When card is the last-child
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    // When card is of type 'alert'
+    &.card--alert {
+        background: tomato;
+        h1, h2, h3, p, a {
+            color: $color__white;
+        }
+    }
+
+    // When card should have a top border
+    &.card--border-top {
+        border-top: 4px solid $color__1;
+    }
+}

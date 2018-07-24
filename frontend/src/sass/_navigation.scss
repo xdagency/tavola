@@ -1,0 +1,71 @@
+/*
+    Navigation
+*/
+
+
+// Main navigation
+// which is in the header
+
+nav.main {
+    padding: $padding--xs 0 0;
+    > ul {
+        > li {
+            position: relative;
+            display: block;
+            padding: $padding--xxs 0;
+
+            // Links in the main nav
+            > a {
+                display: block;
+                font-family: $sans;
+                color: rgba(255,255,255,0.75);
+                font-size: 1rem;
+                text-decoration: none;
+                transition: all 0.22s ease-in-out;
+                &:before {
+                    content: " ";
+                    opacity: 0;
+                    transition: all 0.22s ease-in-out;
+                    position: absolute;
+                    border-top: 1px solid white;
+                    width: 24px;
+                    left: -30px;
+                    top: 6px;
+                }
+                &.active {
+                    color: white;
+                    transform: translateX(30px);
+                    &:before {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    @include bp(break-md) {
+        padding: $padding--sm 0 0;
+    }
+    @include bp(break-lg) {
+        padding: $padding--md 0 0;
+    }
+}
+
+
+// Sub navigation
+// which is under the header
+
+nav.sub {
+    margin-top: $padding--xs+4px;
+    max-width: 420px;
+    margin: $padding--xs+4px auto 0;
+    > ul {
+        > li {
+            display: inline-block;
+            margin: 0 10px 10px 0;
+            > a {
+                font-family: $sans;
+                color: lighten($color__2, 50%);
+            }
+        }
+    }
+}
