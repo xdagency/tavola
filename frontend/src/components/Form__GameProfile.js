@@ -76,17 +76,18 @@ class Form__GameProfile extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Fantasy&category_2=Mythology') }}>Fantasy</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Science%20Fiction&category_2=Space') }}>Science Fiction</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Horror&category_2=Zombies') }}>Horror</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Sports&category_2=Racing') }}>Sports</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Ancient&category_2=Medieval') }}>Historical</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=World%War&category_2=Civil%20War') }}>War</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=World%War&category_2=Civil%20War') }}>Documentaries</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Farming&category_2=Industry') }}>Food</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Storytelling&category_2=Murder%20Mystery') }}>Mystery</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Humor&category_2=Bluffing') }}>Comedy</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Party%20Game&category_2=Dexterity') }}>I don't like TV</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Fantasy&category_2=Mythology&category_3=Fantasy') }}>Fantasy</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Science%20Fiction&category_2=Space&category_3=Exploration') }}>Science Fiction</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Adventure&category_2=Action&category_3=Fighting') }}>Action / Adventure</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Horror&category_2=Zombies&category_3=Miniatures') }}>Horror</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Sports&category_2=Racing&category_3=Aviation') }}>Sports</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Ancient&category_2=Medieval&category_3=Arabian') }}>Historical</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=World%War&category_2=Civil%20War&category_3=Modern%20Warfare') }}>War</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=World%War&category_2=Civil%20War&category_3=Mafia') }}>Documentaries</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Farming&category_2=Industry&category_3=Animals') }}>Food</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Storytelling&category_2=Mystery&category_3=Deduction') }}>Mystery</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Humor&category_2=Bluffing&category_3=Memory') }}>Comedy</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(1, 'category_1=Party%20Game&category_2=Dexterity&category_3=Word%20Game') }}>I don't like TV</button></div></div>
                         </div>
                     </article>
 
@@ -99,15 +100,18 @@ class Form__GameProfile extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Electronic&category_4=Abstract%20Strategy') }}>Computer stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Civilization&category_4=Civil%20War') }}>History stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Action%20Dexterity&category_4=Abstract%20Strategy') }}>Building stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Novel-based&category_4=Book') }}>Reading stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Sports&category_4=Real-time') }}>Sports stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Pirates&category_4=Nautical') }}>Boat stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Transportation&category_4=Racing') }}>Car stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Deduction&category_4=Economic') }}>Learning stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_3=Renaissance&category_4=Mafia') }}>I don’t have any</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Electronic&category_5=Abstract%20Strategy') }}>Computer stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Civilization&category_5=Civil%20War') }}>History stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Action%20Dexterity&category_5=Abstract%20Strategy') }}>Building stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Novel-based&category_5=Book') }}>Reading stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Sports&category_5=Real-time') }}>Sports stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Pirates&category_5=Nautical') }}>Boat stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Transportation&category_5=Racing') }}>Car stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Environmental&category_5=Travel') }}>Outdoor stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Puzzle&category_5=Economic') }}>Learning stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Political&category_5=Spies') }}>Political stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Children&category_5=Educational') }}>Kids stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(2, '&category_4=Renaissance&category_5=Dice') }}>I don’t have any</button></div></div>
                             <div className="col all12 text-center"><div className="btn btn--simple"><a href="#0" onClick={() => { this.goBack(0) }}><FontAwesomeIcon icon="arrow-left" /> Back</a></div></div>
                         </div>
                     </article>
@@ -156,17 +160,18 @@ class Form__GameProfile extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Memory&mechanic_2=Pattern%20Recognition') }}>Solving puzzles</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Variable%20Player%20Powers&mechanic_2=Role%20Playing') }}>Role-playing</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Trading&mechanic_2=Partnetships') }}>Making trades</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Auction%20Bidding&mechanic_2=Set%20Collection') }}>Buying stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Campaign&mechanic_2=Battle') }}>Fighting</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Area%20Movement&mechanic_2=Modular%20Board') }}>Exploring</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Set%20Collection&mechanic_2=Card-Drafting') }}>Building stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Tile%20Placement&mechanic_2=Route') }}>Laying tiles</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Co-operative&mechanic_2=Voting') }}>Working with others</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Worker%20Placement&mechanic_2=Area%20Control') }}>Controlling stuff</button></div></div>
-                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Take%20That&mechanic_2=Trick-taking') }}>Winning!</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Memory&mechanic_2=Pattern%20Recognition&mechanic_3=Storytelling') }}>Solving puzzles</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Variable%20Player%20Powers&mechanic_2=Role%20Playing&mechanic_3=Hand%20Management') }}>Role-playing</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Trading&mechanic_2=Partnerships&mechanic_3=Stock%20Holding') }}>Making trades</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Auction&mechanic_2=Set%20Collection&mechanic_3=Pool%20Building') }}>Buying stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Campaign&mechanic_2=Action&mechanic_3=Battle') }}>Fighting</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Area%20Movement&mechanic_2=Modular%20Board&mechanic_3=Spin%20and%20Move') }}>Exploring</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Set%20Collection&mechanic_2=Card-Drafting&mechanic_3=Deployment') }}>Building stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Tile%20Placement&mechanic_2=Route&mechanic_3=Tile%20Placement') }}>Laying tiles</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Co-operative&mechanic_2=Voting&mechanic_3=Acting') }}>Working with others</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Dice&mechanic_2=Paper-and-pencil&mechanic_3=Roll') }}>Dice rolling</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Worker%20Placement&mechanic_2=Area%20Control&mechanic_3=Pick-up%20and%20Deliver') }}>Controlling stuff</button></div></div>
+                            <div className="col sm12 md6 lg6"><div className="btn btn--form"><button onClick={() => { this.onAnswerClick(5, '&mechanic_1=Take%20That&mechanic_2=Trick-taking&mechanic_3=Press%20Your%20Luck') }}>Winning!</button></div></div>
                             <div className="col all12 text-center"><div className="btn btn--simple"><a href="#0" onClick={() => { this.goBack(3) }}><FontAwesomeIcon icon="arrow-left" /> Back</a></div></div>
                         </div>
                     </article>

@@ -94,6 +94,7 @@ app.get('/games/game', (req, res) => {
                 .orWhere('category', 'like', '%' + req.query.category_2 + '%')
                 .orWhere('category', 'like', '%' + req.query.category_3 + '%')
                 .orWhere('category', 'like', '%' + req.query.category_4 + '%')
+                .orWhere('category', 'like', '%' + req.query.category_5 + '%')
             })
             .andWhere('min_time', '>', req.query.min_time)
             .andWhere('min_players', '>', req.query.min_players)
@@ -101,6 +102,7 @@ app.get('/games/game', (req, res) => {
             .andWhere(function() {
                 this.where('mechanic', 'like', '%' + req.query.mechanic_1 + '%')
                 .orWhere('mechanic', 'like', '%' + req.query.mechanic_2 + '%')
+                .orWhere('mechanic', 'like', '%' + req.query.mechanic_3 + '%')
             }) 
         })
         .fetchAll()

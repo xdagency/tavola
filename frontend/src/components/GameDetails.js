@@ -10,6 +10,7 @@ class GameDetails extends Component {
         super();
         this.state = {
             // data
+            results: true,
             resultsArr: [],
             result__id: 0,
             result__bgg_link: '',
@@ -63,6 +64,7 @@ class GameDetails extends Component {
             // their choices ended up with 0 results
             if (results.data.length === 0) {
                 // window.alert('No games found');
+                this.setState({ results: false });
                 return;
             }
 
@@ -144,7 +146,7 @@ class GameDetails extends Component {
     render() {
 
         // if there are no results
-        if (this.state.resultsArr.length === 0) {
+        if (this.state.results === false) {
 
             return (
                 <div className="wrapper" style={{ backgroundImage: 'url(' + bg + ')', backgroundPosition: 'center bottom 16%' }}>
@@ -197,7 +199,7 @@ class GameDetails extends Component {
                                     <div className="col xs9 md10"><p className="data"><strong>Categories</strong><br />{this.state.result__category}</p></div>
                                 </div>
                                 
-                                <p className="small"><a href="{this.state.result__bgg_link}">View on BoardGameGeek &rarr;</a></p>
+                                <p className="small"><a href={this.state.result__bgg_link}>View on BoardGameGeek &rarr;</a></p>
                                 
                             </section>
 
