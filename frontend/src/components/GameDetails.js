@@ -35,6 +35,9 @@ class GameDetails extends Component {
         // Set the page title
         document.title = "Recommended Game";
 
+        // create refs
+        this.gameCard = React.createRef();
+
         // Hit server and find a game when component mounts
         // only if there is no game already in state
         if (this.state.resultsArr.length === 0) {
@@ -135,7 +138,6 @@ class GameDetails extends Component {
 
     newGame = () => {
 
-        this.gameCard = React.createRef();
         window.scrollTo(300, this.gameCard.offsetTop);
 
         this.selectGame();

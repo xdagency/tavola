@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import bg from '../images/bg-illustration-02.png';
 
@@ -44,6 +44,7 @@ class Form__GameProfile extends Component {
             if (q === 5) {
                 let urlParams = this.state.q__1 + this.state.q__2 + this.state.q__3 + this.state.q__4 + this.state.q__5 + '';
                 this.props.onSubmitQuestions(urlParams);
+                this.props.history.push('/suggest');
             }
 
         });
@@ -176,18 +177,18 @@ class Form__GameProfile extends Component {
                         </div>
                     </article>
 
-                    <article className="question bg" style={{ backgroundImage: 'url(' + bg + ')', backgroundPosition: 'center bottom 16%' }}>
-                        <div className="btn__container center">
-                            <div className="btn btn--large"><Link to="/suggest">Submit</Link></div>
-                            <div className="btn-simple"><a href="#0" onClick={() => { this.goBack(4) }}><FontAwesomeIcon icon="arrow-left" /> Back</a></div>
-                        </div>
-                    </article>
-
                 </div>
+
+                {/*<article className="form__submit bg a--fade-up a--delay-1" style={{ backgroundImage: 'url(' + bg + ')', backgroundPosition: 'center bottom 16%' }}>
+                    <div className="btn__container center">
+                        <div className="btn btn--large"><Link to="/suggest">Submit</Link></div>
+                        <div className="btn btn--alt"><a href="#0" onClick={() => { this.goBack(4) }}><FontAwesomeIcon icon="arrow-left" /> Back</a></div>
+                    </div>
+                </article>*/}
 
             </div>
         );
     }
 }
 
-export default Form__GameProfile;
+export default withRouter(Form__GameProfile);

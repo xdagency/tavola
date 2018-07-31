@@ -159,7 +159,8 @@ app.post('/users/new_user', (req, res) => {
                         res.json(savedUser);
                     })
                     .catch(error => {
-                        console.log(error);
+                        // console.log(error);
+                        res.json(error);
                     });
                 }
             });

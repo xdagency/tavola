@@ -14,11 +14,11 @@ class NoMatch extends Component {
                 <div className="row a--fade-in">
                     <div className="col all12 text-center">
                         <h1>404</h1>
-                        <p>Page couldn't be found. Sorry.</p>
+                        <p>Bad roll. Whatever you were looking for can't be found. Sorry.</p>
                     </div>
                     <div className="col all12 text-center">
                         <div className="btn__container">
-                            <div className="btn-simple"><Link to="/">Back home</Link></div>
+                            <div className="btn btn--alt"><Link to="/">Back home</Link></div>
                         </div>
                     </div>
                 </div>

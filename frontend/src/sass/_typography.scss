@@ -2,77 +2,118 @@
     Typography
 */
 
+$baseline: 24px;
+
+
+// Heading 1
+// Intro Card Heading, 404/Not Found Heading
+
 h1 {
     font-family: $serif;
-    font-size: 1.875rem;
+    font-size: 2rem; // 24px
     color: $color__2;
-    line-height: 100%;
+    line-height: $baseline * 1.5;
+    margin: 0 0 $baseline;
     @include bp(break-sm) {
-        font-size: 2.59rem;
+        font-size: 3rem; // 48px
+        line-height: $baseline * 2;
+        margin: 0 0 ($baseline * 1.5);
     }
     @include bp(break-md) {
-        font-size: 3.1rem;
+        font-size: 3.5rem; // 56px
     }
     @include bp(break-lg) {
-        font-size: 3.9rem;
+        font-size: 3.75rem; // 60px
+        line-height: $baseline * 2.5;
+    }
+
+    &.card__heading {
+        font-size: 1.5rem;
+        line-height: $baseline;
+        margin: 0;
+        padding-top: $padding--xs;
+        @include bp(break-sm) {
+            font-size: 2rem;
+            line-height: $baseline * 1.5;
+            margin: 0 0 $baseline;
+        }
+        @include bp(break-md) {
+            font-size: 2.5rem;
+            padding-top: 0;
+        }
+        @include bp(break-lg) {
+            font-size: 3rem; // 60px
+            line-height: $baseline * 2;
+        }
     }
 }
 
-h1.card__heading {
-    @include bp(break-md) {
-        font-size: 2.7rem;
-    }
-    @include bp(break-lg) {
-        font-size: 3rem;
-    }
-}
+
+// Heading 2
+// Form question title, 
 
 h2 {
     font-family: $serif;
-    font-size: 1.9rem;
+    font-size: 2rem; // 32px
     color: $color__2;
-    line-height: 100%;
-    margin: 0 0 $padding--xs;
+    line-height: $baseline;
+    margin: 0 0 $baseline;
     letter-spacing: -0.033rem;
     @include bp(break-sm) {
-        font-size: 2rem;
+        // font-size: 2rem;
     }
     @include bp(break-md) {
-        font-size: 2.55rem;
-        margin: 0 0 $padding--sm;
+        font-size: 3rem;
+        line-height: $baseline * 2;
     }
     @include bp(break-lg) {
-        font-size: 3.9rem;
+        font-size: 4rem;
+        line-height: $baseline * 3;
     }
 }
+
+
+// Heaiding 3
+// We recommend Heading
 
 h3 {
     font-family: $sans;
     font-size: 2rem;
-    margin-bottom: -0.6rem;
+    margin-bottom: -0.4rem;
     color: lighten($color__2, 65%);
-    line-height: 100%;
+    line-height: $baseline;
     text-align: center;
     @include bp(break-sm) {
-        font-size: 2.55rem;
-        margin-bottom: -0.8rem;
+        font-size: 2.5rem;
+        line-height: $baseline;
+        margin-bottom: -0.35rem;
     }
     @include bp(break-md) {
-        font-size: 3.3rem;
+        font-size: 3.75rem;
+        line-height: $baseline * 2;
         margin-bottom: -1rem;
     }
     @include bp(break-lg) {
-        font-size: 4.9rem;
-        margin-bottom: -1.75rem;
+        font-size: 5rem;
+        line-height: $baseline * 3;
+        margin-bottom: -1.5rem;
     }
 }
+
+
+// Heading 4
 
 h4 {
 }
 
+
+// Heading 5
+// Question number heading
+
 h5 {
     font-family: $sans;
-    font-size: 0.925rem;
+    font-size: 1rem;
+    line-height: 1rem;
     color: darken($color__1, 10%);
     padding: 0;
     @include bp(break-md) {
@@ -84,49 +125,57 @@ p {
     font-family: $sans;
     font-weight: 300;
     color: $color__2;
-    line-height: 144%;
-    font-size: 1.06rem;
-    @include bp(break-sm) { font-size: 1.15rem; }
-    @include bp(break-md) { font-size: 1.25rem; }
-    @include bp(break-lg) { font-size: 1.3rem; }
-    &.data {
-        font-size: 0.98rem;
-        @include bp(break-md) { font-size: 1.1rem; }
-    }
+    line-height: $baseline;
+    font-size: 1rem;
+    margin: 0 0 $baseline;  
+    @include bp(break-sm) { font-size: 1.125rem; }
+    @include bp(break-lg) { font-size: 1.375rem; line-height: $baseline * 1.5; }
+    
     strong { font-weight: 700; }
     em { font-style: italic; }
 
+    // paragraph links
     a {
         color: $color__3;
-        &:hover {
-            color: $color__1;
-        }
+        &:hover { color: $color__1; }
+    }
+    
+    // data text, similar to .small
+    &.data {
+        font-size: 0.9375rem;
+        @include bp(break-md) { font-size: 1.125rem; }
     }
 
+    // small text
     &.small {
-        font-family: $sans;
-        font-size: 0.925rem;
-        padding: 0;
+        font-size: 0.9375rem;
         @include bp(break-md) {
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
+    }
+
+    &:last-child {
+        margin: 0;
     }
 }
 
-h1 + p, h2 + p, h3 + p {
-    padding-top: $padding--sm;
-}
 
 .data-icon {
     font-size: 1.8rem;
     color: #ddd;
 }
 
+
+// Temp logo
+
 .brand {
     font-family: $serif;
     color: #999;
     font-size: 28px;
 }
+
+
+// Alignment
 
 .text-center { text-align: center; }
 .text-right { text-align: right; }

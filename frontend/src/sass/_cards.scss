@@ -93,6 +93,13 @@
         }
     }
 
+    &.card--info {
+        background-color: steelblue;
+        h1, h2, h3, p, a {
+            color: $color__white;
+        }
+    }
+
     // When card should have a top border
     &.card--border-top {
         border-top: 4px solid $color__1;

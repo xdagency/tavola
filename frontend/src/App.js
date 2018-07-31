@@ -7,6 +7,7 @@ import { faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart } from 
 import Intro from './components/Intro';
 import Form__GameProfile from './components/Form__GameProfile';
 import GameDetails from './components/GameDetails';
+import Form__CreateAccount from './components/Form__CreateAccount';
 import NoMatch from './components/NoMatch';
 
 library.add(faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart);
@@ -24,7 +25,8 @@ class App extends Component {
         submitted: false,
 
         // server stuff
-        serverUrl: 'https://tavolaapp.herokuapp.com',
+        //serverUrl: 'https://tavolaapp.herokuapp.com',
+        serverUrl: 'http://localhost:8181',
 
         // data
         resultsArr: []
@@ -63,6 +65,31 @@ class App extends Component {
 
   }
 
+
+  /* ==================== */
+  // ON CREATE ACCOUNT
+  /* ==================== */
+
+  onCreateAccount = (e, p) => {
+
+      // POST request to create a new account
+      let newUser = {
+        email: e,
+        password: p
+      }
+
+      axios.post(this.state.serverUrl + '/users/new_user/', newUser)
+        .then(results => {
+            console.log(results);
+            // if there's no error do something
+        })
+        .catch(error => {
+            //if there was an error creating the account
+            console.log(error);
+        })
+  }
+
+
   render() {
 
     // check if user has submitted a set of search parameters
@@ -91,7 +118,13 @@ class App extends Component {
                   <GameDetails match={props} serverUrl={this.state.serverUrl} user_id={this.state.user_id} searchParams={this.state.searchParams} /> 
                   )
               )} />
-              {/* <Route path="/login" render={(props) => { return <Login match={props} /> }} /> */}
+              <Route path="/login" render={(props) => ( 
+                this.state.loggedIn ? (
+                  <Redirect to="/profile-builder" />
+                ) : (
+                  <Form__CreateAccount match={props} serverUrl={this.state.serverUrl} />
+                )
+              )} />
               <Route component={NoMatch} />
           </Switch>
 
@@ -113,7 +146,7 @@ const Header = () => {
               <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
               <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
               <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
-              <li><NavLink activeClassName="active" to="/login">Login (coming soon)</NavLink></li>
+              <li><NavLink activeClassName="active" to="/login">Login</NavLink></li>
             </ul>
           </nav>
         </header>

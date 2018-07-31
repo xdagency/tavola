@@ -2,16 +2,75 @@
     Forms
 */
 
-$numberOfQuestions: 6;
+$numberOfQuestions: 5;
+
+@keyframes shrink {
+    0% { height: auto; }
+    90% { height: auto; }
+    100% { height: 1px; }
+}
 
 .form {
     // background: aquamarine;
     position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
-    height: 100%;
+    min-height: 100%;
     margin: 0 auto;
 }
+
+
+// Fields
+
+.field {
+    padding: 0 0 $padding--xs;
+    input[type='text'], input[type='email'], input[type='password'], input[type='tel'] {
+        border: none;
+        border-bottom: 2px solid $color__3;
+        background: $color__white;
+        padding: $padding--xxs;
+        width: 100%;
+        font-family: $serif;
+        font-size: 1rem;
+        @include bp(break-md) {
+        }
+    }
+    label {
+        display: block;
+        font-family: $sans;
+        font-size: 1.1rem;
+    }
+    p.small {
+        text-align: center;
+        color: lighten($color__2, 30%);
+        line-height: 100%;
+        padding: $padding--xxs 0 0;
+    }
+
+    p.invalid { color: tomato; }
+    p.valid { color: green; }
+
+    @include bp(break-md) {
+        padding: 0 0 $padding--md;
+    }
+}
+
+// Fields in an info box
+.card--info {
+    .field {
+        label {
+            color: $color__white;
+        }
+        input[type='text'], input[type='email'], input[type='password'], input[type='tel'] {
+            background: none;
+            border-bottom-color: $color__white;
+        }
+    }
+}
+
+
+
+// Questions
 
 .question__container {
     width: $numberOfQuestions * 100%; // 6 screens * 100%
@@ -39,6 +98,13 @@ $numberOfQuestions: 6;
     }
 }
 
+.form__submit {
+    position: relative;
+    display: none;
+    border: 1px solid red;
+    height: 100%;
+}
+
 .q__1 { 
     .question__container { transform: translateX(-100% / $numberOfQuestions); } 
     .question:nth-child(1) { transform: rotateY(55deg); animation: shrink 0s linear 0.8s; } 
@@ -58,10 +124,24 @@ $numberOfQuestions: 6;
 }
 .q__5 { 
     .question__container { transform: translateX(-100% / ($numberOfQuestions / 5)); } 
+
+    // 5th question
     .question:nth-child(5) { transform: rotateY(45deg); }
-    .question:nth-child(-n+5) { height: 250px; overflow: hidden; }
-    @include bp(break-xl) {
-        .question:nth-child(-n+5) { height: 100vh; overflow: hidden; }
-        .bg { height: 100%; }
+
+    // first 5 questions
+    /*.question:nth-child(-n+#{$numberOfQuestions}) { 
+        overflow: hidden;
+        animation-name: shrink;
+        animation-timing-function: 0s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
     }
+
+    // form submit
+    .form__submit { display: block; }
+
+    @include bp(break-xl) {
+        // .question:nth-child(-n+5) { height: 100vh; overflow: hidden; }
+        .form__submit { display: flex; }
+    }*/
 }
