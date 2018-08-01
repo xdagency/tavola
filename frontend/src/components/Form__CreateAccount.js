@@ -8,6 +8,10 @@ class Form__CreateAccount extends Component {
         super();
 
         this.state = {
+            // Login
+            user_email: '',
+            user_password: '',
+            // Create Account
             email: '',
             emailValid: false,
             emailText: 'Must be a valid email (have @ and .)',
@@ -33,6 +37,8 @@ class Form__CreateAccount extends Component {
         this.fieldEmail = React.createRef();
         this.fieldPassword = React.createRef();
         this.fieldPasswordConfirm = React.createRef();
+        this.fieldUserEmail = React.createRef();
+        this.fieldUserPassword = React.createRef();
 
     }
 
@@ -105,6 +111,25 @@ class Form__CreateAccount extends Component {
 
     submitLogin = () => {
 
+        let returningUser = {
+            email: this.state.user_email,
+            password: this.state.user_password
+        }
+
+        axios.post(this.props.serverUrl + '/users/login', returningUser)
+            .then(results => {
+                console.log(results);
+                // if there's an error from backend
+                
+                // if there's no error do something
+                // redirect to profile builder and set a token?
+
+            })
+            .catch(error => {
+                //if there was an error creating the account
+                console.log(error);
+            });
+
     }
 
 
@@ -127,7 +152,7 @@ class Form__CreateAccount extends Component {
             password: this.state.password
         }
 
-        axios.post(this.props.serverUrl + '/users/new_user/', newUser)
+        axios.post(this.props.serverUrl + '/users/new_user', newUser)
             .then(results => {
                 console.log(results);
                 // if there's an error from backend
@@ -168,20 +193,20 @@ class Form__CreateAccount extends Component {
                             <div className="col all6">
                                 <figure className="field">
                                     <label htmlFor="user_email">Email</label>
-                                    <input type="text" name="user_email" id="user_email" value={this.state.password} onChange={(event) => this.handleUserInput(event)} ref={this.fieldPassword} />
+                                    <input type="text" name="user_email" id="user_email" value={this.state.user_email} onChange={(event) => this.handleUserInput(event)} ref={this.fieldUserEmail} />
                                 </figure>
                             </div>
                             <div className="col all6">
                                 <figure className="field">
                                     <label htmlFor="user_password">Password</label>
-                                    <input type="password" name="user_password" id="user_password" value={this.state.password_confirm} onChange={(event) => this.handleUserInput(event)} ref={this.fieldPassword} />
+                                    <input type="password" name="user_password" id="user_password" value={this.state.user_password} onChange={(event) => this.handleUserInput(event)} ref={this.fieldUserPassword} />
                                 </figure>
                             </div>
 
-                        </div>
+                            <div className="btn__container">
+                                <div className="btn btn--alt"><button onClick={this.submitLogin}>Login</button></div>
+                            </div>
 
-                        <div className="btn__container">
-                            <div className="btn btn--alt"><button onClick={this.submitLogin}>Login</button></div>
                         </div>
 
                     </div>

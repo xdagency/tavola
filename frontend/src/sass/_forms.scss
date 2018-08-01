@@ -64,6 +64,7 @@ $numberOfQuestions: 5;
         input[type='text'], input[type='email'], input[type='password'], input[type='tel'] {
             background: none;
             border-bottom-color: $color__white;
+            color: $color__white;
         }
     }
 }

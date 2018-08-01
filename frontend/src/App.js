@@ -146,7 +146,7 @@ const Header = () => {
               <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
               <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
               <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
-              <li><NavLink activeClassName="active" to="/login">Login</NavLink></li>
+              <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li>
             </ul>
           </nav>
         </header>

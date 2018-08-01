@@ -191,7 +191,7 @@ app.post('/users/login', (req, res) => {
             
             // compare with bcrypt
             bcrypt.compare(passwordGuess, hashedPassword, (error, result) => {
-                if(err) {
+                if(error) {
                     console.log(error);
                     return;
                 } else {
