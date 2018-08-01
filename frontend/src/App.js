@@ -7,6 +7,7 @@ import { faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart } from 
 import Intro from './components/Intro';
 import Form__GameProfile from './components/Form__GameProfile';
 import GameDetails from './components/GameDetails';
+import Form__Login from './components/Form__Login';
 import Form__CreateAccount from './components/Form__CreateAccount';
 import NoMatch from './components/NoMatch';
 
@@ -122,9 +123,10 @@ class App extends Component {
                 this.state.loggedIn ? (
                   <Redirect to="/profile-builder" />
                 ) : (
-                  <Form__CreateAccount match={props} serverUrl={this.state.serverUrl} />
+                  <Form__Login match={props} serverUrl={this.state.serverUrl} />
                 )
               )} />
+              <Route path="/create-account" render={(props) => { return <Form__CreateAccount match={props} serverUrl={this.state.serverUrl} /> }} />
               <Route component={NoMatch} />
           </Switch>
 

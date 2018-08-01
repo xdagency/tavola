@@ -8,10 +8,6 @@ class Form__CreateAccount extends Component {
         super();
 
         this.state = {
-            // Login
-            user_email: '',
-            user_password: '',
-            // Create Account
             email: '',
             emailValid: false,
             emailText: 'Must be a valid email (have @ and .)',
@@ -26,7 +22,7 @@ class Form__CreateAccount extends Component {
             passwordConfirmValid: false,
             formValid: false,
             createAccountError: '',
-            createAccountErrorClass: 'col all12 alert none'
+            createAccountErrorClass: 'none'
         }
     }
 
@@ -37,8 +33,6 @@ class Form__CreateAccount extends Component {
         this.fieldEmail = React.createRef();
         this.fieldPassword = React.createRef();
         this.fieldPasswordConfirm = React.createRef();
-        this.fieldUserEmail = React.createRef();
-        this.fieldUserPassword = React.createRef();
 
     }
 
@@ -109,30 +103,6 @@ class Form__CreateAccount extends Component {
     }
 
 
-    submitLogin = () => {
-
-        let returningUser = {
-            email: this.state.user_email,
-            password: this.state.user_password
-        }
-
-        axios.post(this.props.serverUrl + '/users/login', returningUser)
-            .then(results => {
-                console.log(results);
-                // if there's an error from backend
-                
-                // if there's no error do something
-                // redirect to profile builder and set a token?
-
-            })
-            .catch(error => {
-                //if there was an error creating the account
-                console.log(error);
-            });
-
-    }
-
-
     submitCreateAccount = () => {
 
         // event.preventDefault();
@@ -158,8 +128,9 @@ class Form__CreateAccount extends Component {
                 // if there's an error from backend
                 if (results.data.name == 'error') {
                     this.setState({
-                        createAccountError: 'That email already exists. Try something else.'
-                    })
+                        createAccountError: 'That email already exists. Try something else.',
+                        createAccountErrorClass: 'block'
+                    });
                     return;
                 }
                 
@@ -181,34 +152,9 @@ class Form__CreateAccount extends Component {
                
             <div className="form wrapper">
 
-                <div className="card card--info a--fade-up">
+                <div className="card card--alert a--fade-up">
                     <div className="card__content card__content--full">
-                        {/* <p>Already have an account? <Link to="/login">Login</Link>.</p> */}
-                        <div className="row">
-
-                            <div className="col all12">
-                                <h1>Login</h1>
-                            </div>
-
-                            <div className="col all6">
-                                <figure className="field">
-                                    <label htmlFor="user_email">Email</label>
-                                    <input type="text" name="user_email" id="user_email" value={this.state.user_email} onChange={(event) => this.handleUserInput(event)} ref={this.fieldUserEmail} />
-                                </figure>
-                            </div>
-                            <div className="col all6">
-                                <figure className="field">
-                                    <label htmlFor="user_password">Password</label>
-                                    <input type="password" name="user_password" id="user_password" value={this.state.user_password} onChange={(event) => this.handleUserInput(event)} ref={this.fieldUserPassword} />
-                                </figure>
-                            </div>
-
-                            <div className="btn__container">
-                                <div className="btn btn--alt"><button onClick={this.submitLogin}>Login</button></div>
-                            </div>
-
-                        </div>
-
+                        <p>Already have an account? <Link to="/login">Login</Link></p>
                     </div>
                 </div>
 
@@ -243,10 +189,10 @@ class Form__CreateAccount extends Component {
                                 </figure>
                             </div>
 
-                            <div className={this.state.createAccountErrorClass}>
-                                <p>{this.state.createAccountError}</p>
-                            </div>
+                        </div>
 
+                        <div className={ 'alert ' + this.state.createAccountErrorClass }>
+                            <p className="small">{this.state.createAccountError}</p>
                         </div>
 
                         <div className="btn__container">
