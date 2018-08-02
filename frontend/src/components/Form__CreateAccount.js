@@ -103,9 +103,9 @@ class Form__CreateAccount extends Component {
     }
 
 
-    submitCreateAccount = () => {
+    submitCreateAccount = (e) => {
 
-        // event.preventDefault();
+        e.preventDefault();
 
         // If anything is false, don't submit the form
         // and show an error
@@ -161,43 +161,47 @@ class Form__CreateAccount extends Component {
                 <div className="card a--fade-up a--delay-1">
                     <div className="card__content card__content--full">
                         
-                        <div className="row">
+                        <form name="" onSubmit={(e) => { this.submitCreateAccount(e) }}>
 
-                            <div className="col all12">
-                                <h1>Create a new account</h1>
+                            <div className="row">
+
+                                <div className="col all12">
+                                    <h1>Create a new account</h1>
+                                </div>
+
+                                <div className="col all12">
+                                    <figure className="field">
+                                        <label htmlFor="email">Email</label>
+                                        <input type="email" name="email" id="email" value={this.state.email} onChange={(event) => this.handleUserInput(event)} ref={this.fieldEmail} />
+                                        <p className={'small ' + this.state.emailTextClass }>{ this.state.emailText }</p>
+                                    </figure>
+                                </div>
+                                <div className="col all6">
+                                    <figure className="field">
+                                        <label htmlFor="password">Password</label>
+                                        <input type="password" name="password" id="password" value={this.state.password} onChange={(event) => this.handleUserInput(event)} ref={this.fieldPassword} />
+                                        <p className={'small ' + this.state.passwordTextClass }>{this.state.passwordText}</p>
+                                    </figure>
+                                </div>
+                                <div className="col all6">
+                                    <figure className="field">
+                                        <label htmlFor="password_confirm">Confirm Password</label>
+                                        <input type="password" name="password_confirm" id="password_confirm" value={this.state.password_confirm} onChange={(event) => this.handleUserInput(event)} ref={this.fieldPassword} />
+                                        <p className={'small ' + this.state.passwordConfirmTextClass }>{this.state.passwordConfirmText}</p>
+                                    </figure>
+                                </div>
+
                             </div>
 
-                            <div className="col all12">
-                                <figure className="field">
-                                    <label htmlFor="email">Email</label>
-                                    <input type="email" name="email" id="email" value={this.state.email} onChange={(event) => this.handleUserInput(event)} ref={this.fieldEmail} />
-                                    <p className={'small ' + this.state.emailTextClass }>{ this.state.emailText }</p>
-                                </figure>
-                            </div>
-                            <div className="col all6">
-                                <figure className="field">
-                                    <label htmlFor="password">Password</label>
-                                    <input type="password" name="password" id="password" value={this.state.password} onChange={(event) => this.handleUserInput(event)} ref={this.fieldPassword} />
-                                    <p className={'small ' + this.state.passwordTextClass }>{this.state.passwordText}</p>
-                                </figure>
-                            </div>
-                            <div className="col all6">
-                                <figure className="field">
-                                    <label htmlFor="password_confirm">Confirm Password</label>
-                                    <input type="password" name="password_confirm" id="password_confirm" value={this.state.password_confirm} onChange={(event) => this.handleUserInput(event)} ref={this.fieldPassword} />
-                                    <p className={'small ' + this.state.passwordConfirmTextClass }>{this.state.passwordConfirmText}</p>
-                                </figure>
+                            <div className={ 'alert ' + this.state.createAccountErrorClass }>
+                                <p className="small">{this.state.createAccountError}</p>
                             </div>
 
-                        </div>
+                            <div className="btn__container">
+                                <div className="btn btn--large"><button onClick={this.submitCreateAccount}>Create account</button></div>
+                            </div>
 
-                        <div className={ 'alert ' + this.state.createAccountErrorClass }>
-                            <p className="small">{this.state.createAccountError}</p>
-                        </div>
-
-                        <div className="btn__container">
-                            <div className="btn btn--large"><button onClick={this.submitCreateAccount}>Create account</button></div>
-                        </div>
+                        </form>
 
                     </div>
                 </div>

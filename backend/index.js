@@ -211,7 +211,10 @@ app.post('/users/login', (req, res) => {
 
           })
           .catch(error => {
-              console.log(error);
+              // if there was an issue fetching the email
+              // send a 401 status
+              console.log('User.where ERR:', error);
+              res.sendStatus(401);
           })
 
 });

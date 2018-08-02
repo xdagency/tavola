@@ -68,26 +68,11 @@ class App extends Component {
 
 
   /* ==================== */
-  // ON CREATE ACCOUNT
+  // ON USER AUTHENTICATED
   /* ==================== */
 
-  onCreateAccount = (e, p) => {
+  onAuthenticated = () => {
 
-      // POST request to create a new account
-      let newUser = {
-        email: e,
-        password: p
-      }
-
-      axios.post(this.state.serverUrl + '/users/new_user/', newUser)
-        .then(results => {
-            console.log(results);
-            // if there's no error do something
-        })
-        .catch(error => {
-            //if there was an error creating the account
-            console.log(error);
-        })
   }
 
 
@@ -104,7 +89,7 @@ class App extends Component {
       <div className="app">
 
         <section className="page__sidebar">
-            <Header />
+            <Header loggedIn={this.state.loggedIn} />
         </section>
 
         <section className="page__content">
@@ -139,6 +124,7 @@ class App extends Component {
 
 // <Header /> functional component
 const Header = () => {
+
   return (
       <div>
         <header className="page__header">

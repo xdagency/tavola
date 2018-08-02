@@ -2,6 +2,9 @@
     Forms
 */
 
+
+// Settings
+
 $numberOfQuestions: 5;
 
 @keyframes shrink {
@@ -9,6 +12,9 @@ $numberOfQuestions: 5;
     90% { height: auto; }
     100% { height: 1px; }
 }
+
+
+// General form
 
 .form {
     // background: aquamarine;
@@ -47,11 +53,15 @@ $numberOfQuestions: 5;
         padding: $padding--xxs 0 0;
     }
 
-    p.invalid { color: tomato; }
+    p.invalid { color: lighten($color__3, 35%); }
     p.valid { color: green; }
 
     @include bp(break-md) {
         padding: 0 0 $padding--md;
+    }
+
+    &.field--tight {
+        padding: 0 !important;
     }
 }
 
@@ -112,12 +122,8 @@ $numberOfQuestions: 5;
     }
 }
 
-.form__submit {
-    position: relative;
-    display: none;
-    border: 1px solid red;
-    height: 100%;
-}
+
+// Animate as we move through the questions
 
 .q__1 { 
     .question__container { transform: translateX(-100% / $numberOfQuestions); } 
@@ -138,24 +144,16 @@ $numberOfQuestions: 5;
 }
 .q__5 { 
     .question__container { transform: translateX(-100% / ($numberOfQuestions / 5)); } 
-
     // 5th question
     .question:nth-child(5) { transform: rotateY(45deg); }
+}
 
-    // first 5 questions
-    /*.question:nth-child(-n+#{$numberOfQuestions}) { 
-        overflow: hidden;
-        animation-name: shrink;
-        animation-timing-function: 0s;
-        animation-fill-mode: forwards;
-        animation-delay: 0.5s;
-    }
 
-    // form submit
-    .form__submit { display: block; }
+// Submit
 
-    @include bp(break-xl) {
-        // .question:nth-child(-n+5) { height: 100vh; overflow: hidden; }
-        .form__submit { display: flex; }
-    }*/
+.form__submit {
+    position: relative;
+    display: none;
+    border: 1px solid red;
+    height: 100%;
 }
