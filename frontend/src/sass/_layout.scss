@@ -90,8 +90,18 @@ header.page__header {
     max-width: 420px;
     margin: 0 auto;
     border-radius: 2px;
+    transition: all 0.22s ease-in-out;
+
+    // height: 68px;
+    // overflow-y: hidden;
+
+    &.page__header--open {
+        height: auto;
+    }
+
     @include bp(break-md) {
         padding: $padding--sm;
+        height: auto;
     }
 }
 

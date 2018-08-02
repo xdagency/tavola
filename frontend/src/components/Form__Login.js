@@ -49,8 +49,10 @@ class Form__Login extends Component {
             .then(results => {
                 
                 //console.log('RESULTS:', results);
-                // if there's no error do something
-                // redirect to profile builder and set a token?
+                // if there's no error save a 'logged-in' state in localStorage
+                localStorage.setItem('logged-in', true);
+                this.props.onAuthenticated();
+                // then redirect to profile builder and set a token?
                 this.props.history.push('/profile-builder');
 
             })

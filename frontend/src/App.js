@@ -9,6 +9,7 @@ import Form__GameProfile from './components/Form__GameProfile';
 import GameDetails from './components/GameDetails';
 import Form__Login from './components/Form__Login';
 import Form__CreateAccount from './components/Form__CreateAccount';
+import Account from './components/Account';
 import NoMatch from './components/NoMatch';
 
 library.add(faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart);
@@ -40,7 +41,19 @@ class App extends Component {
   /* ==================== */
 
   componentDidMount() {
+    
     document.title = "Board Game Generator";
+
+    if (localStorage.getItem('logged-in') === 'true') {
+      this.setState({
+        loggedIn: true
+      })
+    } else {
+      this.setState({
+        loggedIn: false
+      })
+    }
+
   }
 
 
@@ -73,6 +86,10 @@ class App extends Component {
 
   onAuthenticated = () => {
 
+      this.setState({
+          loggedIn: true
+      })
+
   }
 
 
@@ -85,11 +102,20 @@ class App extends Component {
       userHasSubmitted = true;
     }
 
+    // check if user loggedIn
+    // if they are show a different header
+    let header = '';
+    if (this.state.loggedIn === true) {
+      header = <Header__LoggedIn />
+    } else {
+      header = <Header__LoggedOut />
+    }
+
     return (
       <div className="app">
 
         <section className="page__sidebar">
-            <Header loggedIn={this.state.loggedIn} />
+            { header }
         </section>
 
         <section className="page__content">
@@ -108,10 +134,11 @@ class App extends Component {
                 this.state.loggedIn ? (
                   <Redirect to="/profile-builder" />
                 ) : (
-                  <Form__Login match={props} serverUrl={this.state.serverUrl} />
+                  <Form__Login match={props} serverUrl={this.state.serverUrl} onAuthenticated={this.onAuthenticated} />
                 )
               )} />
               <Route path="/create-account" render={(props) => { return <Form__CreateAccount match={props} serverUrl={this.state.serverUrl} /> }} />
+              <Route path="/account" render={(props) => { return <Account match={props} serverUrl={this.state.serverUrl} /> }} />
               <Route component={NoMatch} />
           </Switch>
 
@@ -123,7 +150,7 @@ class App extends Component {
 }
 
 // <Header /> functional component
-const Header = () => {
+const Header__LoggedOut = () => {
 
   return (
       <div>
@@ -135,6 +162,32 @@ const Header = () => {
               <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
               <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
               <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li>
+            </ul>
+          </nav>
+        </header>
+        <nav className="sub">
+          <ul>
+            <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
+            <li><NavLink to="/terms">Terms of Use</NavLink></li>
+            <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
+          </ul>
+        </nav>
+      </div>
+  )
+}
+
+const Header__LoggedIn = () => {
+
+  return (
+      <div>
+        <header className="page__header">
+          <figure className="brand">Tavola</figure>
+          <nav className="main">
+            <ul>
+              <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
+              <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
+              <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
+              <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li>
             </ul>
           </nav>
         </header>

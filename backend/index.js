@@ -6,6 +6,7 @@ const   express = require('express'),
         app = express(),
         bodyParser = require('body-parser'),
         bcrypt = require('bcrypt'),
+        jwt = require('jsonwebtoken'),
         config = require('./config');
 
 // DB
@@ -47,6 +48,7 @@ app.use((req, res, next) => {
 
 const PORT = process.env.PORT || 8181;
 const workFactor = config.WORK_FACTOR;
+const SECRET_KEY = config.SECRET_KEY;
 
 
 
@@ -194,12 +196,53 @@ app.post('/users/login', (req, res) => {
                 if(error) {
                     console.log(error);
                     return;
+
                 } else {
+
                     // console.log('It is', result, 'that the passwords matched');
                     if (result) {
+
                         // user is authenticated!
                         console.log('you did it');
+                        // send an OK status
                         res.sendStatus(200);
+                        
+
+                        /* JSON WEB TOKEN - for later
+
+                        // send the JWT
+                        let payload = { // the user we are granting a signature
+                            iss: 'tavolaapp',
+                            sub: userEmail,
+                            exp: (Date.now() + 86400000)
+                        }
+                        
+                        jwt.sign(payload, SECRET_KEY, (error, token) => {
+                            if(error) {
+                                console.log(error);
+                                return;
+                            }
+                            
+                            // send an OK status
+                            // and send the token
+                            res.sendStatus(200).json(token);
+                            // console.log(token);
+                        
+                            jwt.verify(token, SECRET_KEY, (error, decodedPayload) => {
+                                if(error) {
+                                    console.log(error);
+                                    return;
+                                }
+                        
+                                console.log(decodedPayload);
+                        
+                            });
+                        
+                        });
+                        // end the JWT
+                        */
+                       
+
                     } else {
                         // passwords don't match
                         console.log('you didn\'t do it');
