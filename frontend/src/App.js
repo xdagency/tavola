@@ -125,7 +125,7 @@ class App extends Component {
                 <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
                 <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
                 {this.state.loggedIn ?
-                  ( <li>{this.state.user_email}</li> ) : ( <span></span> )
+                  ( <li className="account">{this.state.user_email}</li> ) : ( <span></span> )
                 }
                 {this.state.loggedIn ?
                   ( <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li> ) : 

@@ -43,6 +43,11 @@ nav.main {
                     }
                 }
             }
+
+            &.account {
+                margin-top: $padding--xs;
+                border-top: 1px solid lighten($color__2, 33%);
+            }
         }
     }
     @include bp(break-md) {
@@ -68,6 +73,12 @@ nav.sub {
             > a {
                 font-family: $sans;
                 color: lighten($color__2, 50%);
+            }
+            &:nth-child(3) {
+                display: none;
+                @include bp(break-sm) {
+                    display: inline-block;
+                }
             }
         }
     }
