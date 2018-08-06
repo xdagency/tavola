@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import bg from '../images/bg-illustration-02.png';
 
 class Account extends Component {
 
@@ -8,14 +6,9 @@ class Account extends Component {
         document.title = "Account";
     }
 
-    onLogout = () => {
-        localStorage.clear();
-        this.props.history.push('/');
-    }
-
     render() {
         return (
-            <div className="wrapper bg" style={{ backgroundImage: 'url(' + bg + ')' }}>
+            <div className="wrapper">
 
                 <div className="card a--fade-up">
                     <div className="card__content card__content--full">
@@ -34,7 +27,7 @@ class Account extends Component {
                 <div className="card a--fade-up a--delay-2">
                     <div className="card__content card__content--full">
                         <div className="btn__container">
-                            <div className="btn btn--alt"><button onClick={this.onLogout}>Logout</button></div>
+                            <div className="btn btn--alt"><button onClick={this.props.onLogout}>Logout</button></div>
                         </div>
                     </div>
                 </div>
@@ -44,4 +37,4 @@ class Account extends Component {
     }
 }
 
-export default withRouter(Account);
+export default Account;

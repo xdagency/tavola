@@ -201,13 +201,11 @@ app.post('/users/login', (req, res) => {
 
                     // console.log('It is', result, 'that the passwords matched');
                     if (result) {
-
                         // user is authenticated!
                         console.log('you did it');
                         // send an OK status
                         res.sendStatus(200);
                         
-
                         /* JSON WEB TOKEN - for later
 
                         // send the JWT

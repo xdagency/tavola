@@ -48,10 +48,11 @@ class Form__Login extends Component {
         axios.post(this.props.serverUrl + '/users/login', returningUser)
             .then(results => {
                 
-                //console.log('RESULTS:', results);
+                // console.log('RESULTS:', results);
                 // if there's no error save a 'logged-in' state in localStorage
                 localStorage.setItem('logged-in', true);
-                this.props.onAuthenticated();
+                localStorage.setItem('user-email', returningUser.email);
+                this.props.onAuthenticated(returningUser.email);
                 // then redirect to profile builder and set a token?
                 this.props.history.push('/profile-builder');
 

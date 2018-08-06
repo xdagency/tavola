@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
-import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -23,6 +22,7 @@ class App extends Component {
         // user stuff
         loggedIn: false,
         user_id: 0,
+        user_email: '',
         searchParams: '',
         submitted: false,
 
@@ -45,12 +45,12 @@ class App extends Component {
     document.title = "Board Game Generator";
 
     if (localStorage.getItem('logged-in') === 'true') {
+
+      let user_email = localStorage.getItem('user-email');
+
       this.setState({
-        loggedIn: true
-      })
-    } else {
-      this.setState({
-        loggedIn: false
+        loggedIn: true,
+        user_email: user_email
       })
     }
 
@@ -84,12 +84,23 @@ class App extends Component {
   // ON USER AUTHENTICATED
   /* ==================== */
 
-  onAuthenticated = () => {
-
+  onAuthenticated = (email) => {
       this.setState({
-          loggedIn: true
+          loggedIn: true,
+          user_email: email
       })
+  }
 
+
+  /* ==================== */
+  // ON USER LOGOUT
+  /* ==================== */
+
+  onLogout = () => {
+    localStorage.clear();
+    this.setState({
+        loggedIn: false
+    })
   }
 
 
@@ -102,20 +113,34 @@ class App extends Component {
       userHasSubmitted = true;
     }
 
-    // check if user loggedIn
-    // if they are show a different header
-    let header = '';
-    if (this.state.loggedIn === true) {
-      header = <Header__LoggedIn />
-    } else {
-      header = <Header__LoggedOut />
-    }
-
     return (
       <div className="app">
 
         <section className="page__sidebar">
-            { header }
+          <header className="page__header">
+            <figure className="brand">Tavola</figure>
+            <nav className="main">
+              <ul>
+                <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
+                <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
+                <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
+                {this.state.loggedIn ?
+                  ( <li>{this.state.user_email}</li> ) : ( <span></span> )
+                }
+                {this.state.loggedIn ?
+                  ( <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li> ) : 
+                  ( <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li> )
+                }
+              </ul>
+            </nav>
+          </header>
+          <nav className="sub">
+            <ul>
+              <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
+              <li><NavLink to="/terms">Terms of Use</NavLink></li>
+              <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
+            </ul>
+          </nav>
         </section>
 
         <section className="page__content">
@@ -132,13 +157,19 @@ class App extends Component {
               )} />
               <Route path="/login" render={(props) => ( 
                 this.state.loggedIn ? (
-                  <Redirect to="/profile-builder" />
+                  <Redirect to="/profile-builder" />  
                 ) : (
                   <Form__Login match={props} serverUrl={this.state.serverUrl} onAuthenticated={this.onAuthenticated} />
                 )
               )} />
-              <Route path="/create-account" render={(props) => { return <Form__CreateAccount match={props} serverUrl={this.state.serverUrl} /> }} />
-              <Route path="/account" render={(props) => { return <Account match={props} serverUrl={this.state.serverUrl} /> }} />
+              <Route path="/create-account" render={(props) => { return <Form__CreateAccount match={props} serverUrl={this.state.serverUrl} onAuthenticated={this.onAuthenticated} /> }} />
+              <Route path="/account" render={(props) => ( 
+                !this.state.loggedIn ? (
+                  <Redirect to="/" />
+                ) : (
+                  <Account match={props} serverUrl={this.state.serverUrl} onLogout={this.onLogout} />
+                )
+              )} />
               <Route component={NoMatch} />
           </Switch>
 
@@ -147,59 +178,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-// <Header /> functional component
-const Header__LoggedOut = () => {
-
-  return (
-      <div>
-        <header className="page__header">
-          <figure className="brand">Tavola</figure>
-          <nav className="main">
-            <ul>
-              <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-              <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
-              <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
-              <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li>
-            </ul>
-          </nav>
-        </header>
-        <nav className="sub">
-          <ul>
-            <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
-            <li><NavLink to="/terms">Terms of Use</NavLink></li>
-            <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
-          </ul>
-        </nav>
-      </div>
-  )
-}
-
-const Header__LoggedIn = () => {
-
-  return (
-      <div>
-        <header className="page__header">
-          <figure className="brand">Tavola</figure>
-          <nav className="main">
-            <ul>
-              <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-              <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
-              <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
-              <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li>
-            </ul>
-          </nav>
-        </header>
-        <nav className="sub">
-          <ul>
-            <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
-            <li><NavLink to="/terms">Terms of Use</NavLink></li>
-            <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
-          </ul>
-        </nav>
-      </div>
-  )
 }
 
 export default App;

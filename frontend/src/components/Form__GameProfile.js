@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import bg from '../images/bg-illustration-02.png';
+// import bg from '../images/bg-illustration-02.png';
 
 class Form__GameProfile extends Component {
     constructor() {

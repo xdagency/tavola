@@ -13,6 +13,9 @@ nav.main {
             position: relative;
             display: block;
             padding: $padding--xxs 0;
+            color: lighten($color__2, 40%);
+            font-family: $sans;
+            font-size: 0.88rem;
 
             // Links in the main nav
             > a {

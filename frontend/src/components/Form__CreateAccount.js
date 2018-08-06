@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class Form__CreateAccount extends Component {
@@ -135,7 +135,11 @@ class Form__CreateAccount extends Component {
                 }
                 
                 // if there's no error do something
-                // redirect to profile builder and set a token?
+                // redirect to profile builder and set a token or localStorage
+                localStorage.setItem('logged-in', true);
+                localStorage.setItem('user-email', newUser.email);
+                this.props.onAuthenticated(newUser.email);
+                this.props.history.push('/');
 
             })
             .catch(error => {
@@ -211,4 +215,4 @@ class Form__CreateAccount extends Component {
     }
 }
 
-export default Form__CreateAccount;
+export default withRouter(Form__CreateAccount);
