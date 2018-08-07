@@ -145,6 +145,18 @@ class GameDetails extends Component {
     }
 
 
+    /* ==================== */
+    // SCRAPE ONLINE RETAILERS
+    /* ==================== */
+
+    scrapeSellers = (title) => {
+
+        // scrape these online retailers for the game title
+        // amazon, boardgamebliss, boardgames.ca
+
+    }
+
+
     render() {
 
         // if there are no results
