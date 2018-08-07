@@ -43,11 +43,6 @@ nav.main {
                     }
                 }
             }
-
-            &.account {
-                margin-top: $padding--xs;
-                border-top: 1px solid lighten($color__2, 33%);
-            }
         }
     }
     @include bp(break-md) {

@@ -99,9 +99,22 @@ header.page__header {
         height: auto;
     }
 
+    &.page__header--loggedin {
+        background: darken($color__3, 16%);
+    }
+
     @include bp(break-md) {
         padding: $padding--sm;
         height: auto;
+    }
+
+    .account {
+        font-family: $sans;
+        font-size: 0.88rem;
+        color: white;
+        padding: $padding--xxs 0 0;
+        margin: 0;
+        opacity: 0.5;
     }
 }
 

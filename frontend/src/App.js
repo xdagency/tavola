@@ -117,16 +117,14 @@ class App extends Component {
       <div className="app">
 
         <section className="page__sidebar">
-          <header className="page__header">
+          <header className={ 'page__header ' + (this.state.loggedIn ? 'page__header--loggedin' : '') }>
             <figure className="brand">Tavola</figure>
+            {this.state.loggedIn ? ( <figure className="account">{this.state.user_email}</figure> ) : ( <span></span> )}
             <nav className="main">
               <ul>
                 <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
                 <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
                 <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
-                {this.state.loggedIn ?
-                  ( <li className="account">{this.state.user_email}</li> ) : ( <span></span> )
-                }
                 {this.state.loggedIn ?
                   ( <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li> ) : 
                   ( <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li> )
