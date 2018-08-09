@@ -105,3 +105,40 @@
         border-top: 4px solid $color__1;
     }
 }
+
+
+// Card item
+// A sub item in a large card
+
+.card__item {
+    display: block;
+    position: relative;
+    padding: $padding--xxs;
+    border: 1px solid $color__1;
+    border-radius: 3px;
+    margin-right: $padding--xxs;
+    text-align: center;
+    width: 100%;
+
+    @include bp(break-sm) {
+        padding: $padding--xs;
+        width: 30%;
+    }
+
+    h4 {
+        font-family: $sans;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 0.9rem;
+        padding: 0; margin: 0;
+        line-height: 100%;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}

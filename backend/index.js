@@ -128,8 +128,12 @@ app.get('/games/game', (req, res) => {
 
         .then(result => {
 
-            // scrape sites and send back data
             scrape(result);
+            // scrape sites and send back data
+            // res.json({
+            //     game: result,
+            //     scrape: scrape(result.names)
+            // })
         })
 
         // or, if there's an error
@@ -277,30 +281,36 @@ app.listen(PORT, () => {
 /* FUNCTIONS            */
 /* ==================== */
 
-function scrape(names) {
+function scrape(title) {
+
+    // create an empty object to contain all the scrape data
+    // let scrapeDetails = {};
 
     // scrape boardgamebliss
-    request('https://www.boardgamebliss.com/search?x=0&y=0&q=' + names, function(err, res, body) {
+    request('https://www.boardgamebliss.com/search?x=0&y=0&q=' + title, function(err, res, body) {
 
         if (!err) {
 
-            // load the whole body of the page scrped into $
+            // load the whole body of the page scraped into $
             let $ = cheerio.load(body);
             
             // .results is where each game is located on bgb
             $('.results').each(function() {
 
-                // console.log($(this).text());
+                console.log($(this).text());
                 // find the game that exaclty matches the title
                 // as the search will produce a loose set of resulrs
-                if ($(this).find('.span11 h3').text().toUpperCase() === names.toUpperCase()) {
+                if ($(this).find('.span11 h3').text().toUpperCase() === title.toUpperCase()) {
+
+                    console.log('Match found:', title);
                     
-                    let bgbDetails = {
-                        price: $(this).find('.span11 .search-price').text(),
-                        link: $(this).find('.span11 h3 a').attr('href')
+                    let scrapeDetails = {
+                        bgb__price: $(this).find('.span11 .search-price').text(),
+                        bgb__link: $(this).find('.span11 h3 a').attr('href')
                     }
 
-                    console.log(bgbDetails);
+                    console.log(title, scrapeDetails);
+                    return scrapeDetails;
                     
                 }
             });
@@ -308,6 +318,7 @@ function scrape(names) {
         } else {
 
             console.log('FETCH:', err);
+            return 'Error fetching';
 
         }
 

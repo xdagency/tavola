@@ -25,8 +25,8 @@ class GameDetails extends Component {
             // scrape
             bgbScrape: {
                 loaded: false,
-                price: 0,
-                link: ''
+                price: '$24.95 CAD',
+                link: '/products/splendor/'
             }
         }
     }
@@ -78,7 +78,7 @@ class GameDetails extends Component {
                 return;
             }
 
-            // console.log(results.data);
+            console.log(results.data);
             let theGame = results.data;
 
             this.setState({
@@ -269,9 +269,15 @@ class GameDetails extends Component {
                             </section>
                         </div>
 
-                        <div className="card card--border-top a--fade-up a--delay-3">
-                            <section className="card__content card__content--full">
-                                <p>Buy this game (Coming soon)</p>
+                        <div className="card a--fade-up a--delay-3">
+                            <section className="card__content card__content--full flex jc--sb">
+                                
+                                <article className="card__item">
+                                    <h4>Boardgame Bliss</h4>
+                                    <p>{this.state.bgbScrape.price}</p>
+                                    <a className="element-link" href={"https://www.boardgamebliss.com" + this.state.bgbScrape.link} target="_blank"></a>
+                                </article>
+
                             </section>
                         </div>
 
