@@ -21,7 +21,13 @@ class GameDetails extends Component {
             result__rank: 0,
             result__rankName: '',
             result__category: '',
-            result__mechanic: ''
+            result__mechanic: '',
+            // scrape
+            bgbScrape: {
+                loaded: false,
+                price: 0,
+                link: ''
+            }
         }
     }
 
@@ -72,7 +78,7 @@ class GameDetails extends Component {
                 return;
             }
 
-            console.log(results.data);
+            // console.log(results.data);
             let theGame = results.data;
 
             this.setState({
