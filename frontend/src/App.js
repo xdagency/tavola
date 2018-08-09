@@ -27,8 +27,8 @@ class App extends Component {
         submitted: false,
 
         // server stuff
-        serverUrl: 'https://tavolaapp.herokuapp.com',
-        // serverUrl: 'http://localhost:8181',
+        // serverUrl: 'https://tavolaapp.herokuapp.com',
+        serverUrl: 'http://localhost:8181',
 
         // data
         resultsArr: []

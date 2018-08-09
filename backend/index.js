@@ -5,8 +5,10 @@
 const   express = require('express'),
         app = express(),
         bodyParser = require('body-parser'),
+        request = require('request'),
         bcrypt = require('bcrypt'),
         jwt = require('jsonwebtoken'),
+        cheerio = require('cheerio'),
         config = require('./config');
 
 // DB
@@ -113,9 +115,21 @@ app.get('/games/game', (req, res) => {
         // in JSON format
         .then(results => {
 
-            // send back 1 result
-            res.json(results);
-            console.log(results);
+            // convert the results to a JSON array of results
+            let arrStr = JSON.stringify(results);
+            let arrJson = JSON.parse(arrStr);
+            // console.log(arrJson);
+
+            // randomly choose a single result and send to front end
+            let randomIndex = Math.floor(Math.random() * arrJson.length);
+            res.json(arrJson[randomIndex]);
+            return arrJson[randomIndex].names;
+        })
+
+        .then(result => {
+
+            // scrape sites and send back data
+            scrape(result);
         })
 
         // or, if there's an error
@@ -173,7 +187,7 @@ app.post('/users/new_user', (req, res) => {
 });
 
 
-// /usres/login POST route for when a user attempts a login
+// /users/login POST route for when a user attempts a login
 app.post('/users/login', (req, res) => {
 
     // Get their email and password guess
@@ -205,41 +219,6 @@ app.post('/users/login', (req, res) => {
                         console.log('you did it');
                         // send an OK status
                         res.sendStatus(200);
-                        
-                        /* JSON WEB TOKEN - for later
-
-                        // send the JWT
-                        let payload = { // the user we are granting a signature
-                            iss: 'tavolaapp',
-                            sub: userEmail,
-                            exp: (Date.now() + 86400000)
-                        }
-                        
-                        jwt.sign(payload, SECRET_KEY, (error, token) => {
-                            if(error) {
-                                console.log(error);
-                                return;
-                            }
-                            
-                            // send an OK status
-                            // and send the token
-                            res.sendStatus(200).json(token);
-                            // console.log(token);
-                        
-                            jwt.verify(token, SECRET_KEY, (error, decodedPayload) => {
-                                if(error) {
-                                    console.log(error);
-                                    return;
-                                }
-                        
-                                console.log(decodedPayload);
-                        
-                            });
-                        
-                        });
-                        // end the JWT
-                        */
-                       
 
                     } else {
                         // passwords don't match
@@ -291,3 +270,47 @@ app.post('/users/save', (req, res) => {
 app.listen(PORT, () => {
     console.log('We are up on', PORT);
 })
+
+
+
+/* ==================== */
+/* FUNCTIONS            */
+/* ==================== */
+
+function scrape(names) {
+
+    // scrape boardgamebliss
+    request('https://www.boardgamebliss.com/search?x=0&y=0&q=' + names, function(err, res, body) {
+
+        if (!err) {
+
+            // load the whole body of the page scrped into $
+            let $ = cheerio.load(body);
+            
+            // .results is where each game is located on bgb
+            $('.results').each(function() {
+
+                // console.log($(this).text());
+                // find the game that exaclty matches the title
+                // as the search will produce a loose set of resulrs
+                if ($(this).find('.span11 h3').text().toUpperCase() === names.toUpperCase()) {
+                    
+                    let bgbDetails = {
+                        price: $(this).find('.span11 .search-price').text(),
+                        link: $(this).find('.span11 h3 a').attr('href')
+                    }
+
+                    console.log(bgbDetails);
+                    
+                }
+            });
+
+        } else {
+
+            console.log('FETCH:', err);
+
+        }
+
+    });
+
+}

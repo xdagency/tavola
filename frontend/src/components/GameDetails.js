@@ -41,19 +41,20 @@ class GameDetails extends Component {
         // Hit server and find a game when component mounts
         // only if there is no game already in state
         if (this.state.resultsArr.length === 0) {
-            this.findGames();
+            this.getGame();
         }
 
     }
 
 
+
     /* ==================== */
-    // FIND GAMES
+    // GET GAME
     /* ==================== */
 
-    findGames = () => {
+    getGame = () => {
 
-        // Hit backend and get array of games based on search params
+        // Hit backend and get a game based on search params
         // send GET request to server with our full url + params
         axios.get(this.props.serverUrl + '/games/game?' + this.props.searchParams)
 
@@ -72,14 +73,25 @@ class GameDetails extends Component {
             }
 
             console.log(results.data);
+            let theGame = results.data;
 
             this.setState({
-                resultsArr: results.data
+                result__id: theGame.id,
+                result__bgg_link: theGame.bgg_link,
+                result__name: theGame.names,
+                result__avg_rating: theGame.avg_rating,
+                result__avg_time: theGame.avg_time,
+                result__image: theGame.image_url,
+                result__rank: theGame.rank,
+                result__category: theGame.category,
+                result__mechanic: theGame.mechanic
             }, () => {
 
                 // set state callback
-                // f- select a game from the arr
-                this.selectGame();
+                // update title with game name
+                document.title = "Recommended Game - " + this.state.result__name;
+                // set the rank
+                this.setRank();
 
             }) // end setState          
 
@@ -93,8 +105,29 @@ class GameDetails extends Component {
     }
 
 
+
     /* ==================== */
-    // SELECT A GAME
+    // SET RANK
+    /* ==================== */
+
+    setRank = () => {
+
+        // set default rank
+        let rankName = 'Low';
+        // depending on numerical 'rank' of game
+        // set a string to represent the rank of that game
+        if (this.state.result__rank < 101) { rankName = 'Very High'; }
+        else if (this.state.result__rank < 1001) { rankName = 'High'; }
+        else if (this.state.result__rank < 3001) { rankName = 'Average'; }
+        else if (this.state.result__rank < 99000) { rankName = 'Low'; }
+
+        this.setState({ result__rankName: rankName });
+    }
+
+
+
+    /* ==================== */
+    // SELECT A GAME (Deprecated)
     /* ==================== */
 
     selectGame = () => {
@@ -132,17 +165,19 @@ class GameDetails extends Component {
     }
 
 
+
     /* ==================== */
-    // NEW GAME f-
+    // NEW GAME
     /* ==================== */
 
     newGame = () => {
 
         window.scrollTo(300, this.gameCard.offsetTop);
 
-        this.selectGame();
+        this.getGame();
 
     }
+
 
 
     /* ==================== */

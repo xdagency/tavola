@@ -12,9 +12,11 @@
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "bookshelf": "^0.13.3",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "knex": "^0.15.0",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "request": "^2.87.0"
   }
 }
