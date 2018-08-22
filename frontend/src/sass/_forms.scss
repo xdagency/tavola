@@ -32,9 +32,11 @@ $numberOfQuestions: 5;
     padding: 0 0 $padding--xs;
     input[type='text'], input[type='email'], input[type='password'], input[type='tel'] {
         border: none;
+        border: 1px solid #ddd;
         border-bottom: 2px solid $color__3;
         background: $color__white;
         padding: $padding--xxs;
+        margin: $padding--xxs 0 0;
         width: 100%;
         font-family: $serif;
         font-size: 1rem;
@@ -50,11 +52,19 @@ $numberOfQuestions: 5;
         text-align: center;
         color: lighten($color__2, 30%);
         line-height: 100%;
-        padding: $padding--xxs 0 0;
+        padding: $padding--xxs;
+        margin-top: 3px;
+        border-radius: 0 0 2px 2px;
     }
 
-    p.invalid { color: lighten($color__3, 35%); }
-    p.valid { color: green; }
+    p.invalid {
+        background-color: #eaeaea;
+        color: #4f4f4f;
+    }
+    p.valid { 
+        background-color: #c2e5bf;
+        color: #4f4f4f;
+    }
 
     @include bp(break-md) {
         padding: 0 0 $padding--md;
