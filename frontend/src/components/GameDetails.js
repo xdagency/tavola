@@ -23,11 +23,9 @@ class GameDetails extends Component {
             result__category: '',
             result__mechanic: '',
             // scrape
-            bgbScrape: {
-                loaded: false,
-                price: '$24.95 CAD',
-                link: '/products/splendor/'
-            }
+            bgb__loaded: false,
+            bgb__price: 'N/A',
+            bgb__link: '/'
         }
     }
 
@@ -78,8 +76,9 @@ class GameDetails extends Component {
                 return;
             }
 
-            console.log(results.data);
-            let theGame = results.data;
+            console.log('FROM THE BACKEND', results.data);
+            let theGame = results.data.gameDetails;
+            let theScrape = results.data.scrapeDetails;
 
             this.setState({
                 result__id: theGame.id,
@@ -90,7 +89,10 @@ class GameDetails extends Component {
                 result__image: theGame.image_url,
                 result__rank: theGame.rank,
                 result__category: theGame.category,
-                result__mechanic: theGame.mechanic
+                result__mechanic: theGame.mechanic,
+                bgb__price: theScrape.bgb__price,
+                bgb__link: theScrape.bgb__link
+
             }, () => {
 
                 // set state callback
@@ -274,8 +276,8 @@ class GameDetails extends Component {
                                 
                                 <article className="card__item">
                                     <h4>Boardgame Bliss</h4>
-                                    <p>{this.state.bgbScrape.price}</p>
-                                    <a className="element-link" href={"https://www.boardgamebliss.com" + this.state.bgbScrape.link} target="_blank"></a>
+                                    <p>{this.state.bgb__price}</p>
+                                    <a className="element-link" href={"https://www.boardgamebliss.com" + this.state.bgb__link} target="_blank"></a>
                                 </article>
 
                             </section>

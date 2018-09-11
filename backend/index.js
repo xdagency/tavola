@@ -122,18 +122,20 @@ app.get('/games/game', (req, res) => {
 
             // randomly choose a single result and send to front end
             let randomIndex = Math.floor(Math.random() * arrJson.length);
-            res.json(arrJson[randomIndex]);
-            return arrJson[randomIndex].names;
+            // res.json(arrJson[randomIndex]);
+            return arrJson[randomIndex];
         })
 
         .then(result => {
 
-            scrape(result);
-            // scrape sites and send back data
-            // res.json({
-            //     game: result,
-            //     scrape: scrape(result.names)
-            // })
+            // scrape using the chosen game name
+            scrape(result.names, (scrapeDetails) => {
+                res.json({
+                    gameDetails: result,
+                    scrapeDetails
+                })
+            });
+            
         })
 
         // or, if there's an error
@@ -281,7 +283,7 @@ app.listen(PORT, () => {
 /* FUNCTIONS            */
 /* ==================== */
 
-function scrape(title) {
+function scrape(title, callback) {
 
     // create an empty object to contain all the scrape data
     // let scrapeDetails = {};
@@ -310,7 +312,8 @@ function scrape(title) {
                     }
 
                     console.log(title, scrapeDetails);
-                    return scrapeDetails;
+                    
+                    return callback(scrapeDetails);
                     
                 }
             });
