@@ -23,7 +23,7 @@ class GameDetails extends Component {
             result__category: '',
             result__mechanic: '',
             // scrape
-            bgb__loaded: false,
+            scrape__loaded: false,
             bgb__price: 'N/A',
             bgb__link: '/'
         }
@@ -72,13 +72,12 @@ class GameDetails extends Component {
             // their choices ended up with 0 results
             if (results.data.length === 0) {
                 // window.alert('No games found');
-                this.setState({ results: false });
+                this.setState({ results: false, scrape__loaded: false });
                 return;
             }
 
             console.log('FROM THE BACKEND', results.data);
-            let theGame = results.data.gameDetails;
-            let theScrape = results.data.scrapeDetails;
+            let theGame = results.data;
 
             this.setState({
                 result__id: theGame.id,
@@ -89,9 +88,7 @@ class GameDetails extends Component {
                 result__image: theGame.image_url,
                 result__rank: theGame.rank,
                 result__category: theGame.category,
-                result__mechanic: theGame.mechanic,
-                bgb__price: theScrape.bgb__price,
-                bgb__link: theScrape.bgb__link
+                result__mechanic: theGame.mechanic
 
             }, () => {
 
@@ -101,7 +98,27 @@ class GameDetails extends Component {
                 // set the rank
                 this.setRank();
 
-            }) // end setState          
+            }) // end setState
+
+            // return a get request to get our scrape data
+            return axios.get(this.props.serverUrl + '/games/scrape?title=' + theGame.names);
+
+        })
+
+        // results from scrape endpoint
+        .then(results => {
+
+            // save the results from the backend
+            let theScrape = results.data;
+
+            console.log('THE SCRAPE:', results.data);
+
+            // set the state with scrape results
+            this.setState({
+                scrape__loaded: true,
+                bgb__link: theScrape.bgb__link,
+                bgb__price: theScrape.bgb__price
+            }) // end setState
 
         })
 
