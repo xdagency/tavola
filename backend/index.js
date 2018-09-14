@@ -123,8 +123,7 @@ app.get('/games/game', (req, res) => {
             // randomly choose a single result and send to front end
             let randomIndex = Math.floor(Math.random() * arrJson.length);
             
-            res.json(arrJson[randomIndex]);
-            // return arrJson[randomIndex];
+            return res.json(arrJson[randomIndex]);
         })
 
         // or, if there's an error
@@ -141,7 +140,7 @@ app.get('/games/scrape', (req, res) => {
     let title = req.query.title;
 
     scrape(title, (scrapeDetails) => {
-        res.json(scrapeDetails);
+        return res.json(scrapeDetails);
     })
 
 });
@@ -288,7 +287,7 @@ app.listen(PORT, () => {
 function scrape(title, callback) {
 
     // create an empty object to contain all the scrape data
-    // let scrapeDetails = {};
+    let scrapeDetails = {}
 
     // scrape boardgamebliss
     request('https://www.boardgamebliss.com/search?x=0&y=0&q=' + title, function(err, res, body) {
@@ -303,32 +302,24 @@ function scrape(title, callback) {
 
                 // console.log($(this).text());
                 // find the game that exaclty matches the title
-                // as the search will produce a loose set of resulrs
+                // as the search will produce a loose set of results
                 if ($(this).find('.span11 h3').text().toUpperCase() === title.toUpperCase()) {
 
-                    console.log('MATCH FOUND:', title);
+                    // console.log('MATCH FOUND:', title);
                     
-                    let scrapeDetails = {
+                    // If there's a match update the scrapeDetails object
+                    
+                    scrapeDetails = {
                         bgb__price: $(this).find('.span11 .search-price').text(),
                         bgb__link: $(this).find('.span11 h3 a').attr('href')
                     }
 
                     console.log(title, scrapeDetails);
-                    
-                    return callback(scrapeDetails);
-                    
-                } else {
-
-                    console.log('MATCH NOT FOUND');
-                    
-                    let scrapeDetails = {
-                        bgb__price: 'N/A',
-                        bgb__link: '/'
-                    }
 
                     return callback(scrapeDetails);
-
+                    
                 }
+
             });
 
         } else {

@@ -77,8 +77,11 @@ class GameDetails extends Component {
             }
 
             console.log('FROM THE BACKEND', results.data);
+
+            // data from endpoint stored in variable
             let theGame = results.data;
 
+            // set the state which holds all the data for (1) game
             this.setState({
                 result__id: theGame.id,
                 result__bgg_link: theGame.bgg_link,
@@ -108,12 +111,13 @@ class GameDetails extends Component {
         // results from scrape endpoint
         .then(results => {
 
-            // save the results from the backend
+            // data from endpoint stored in variable
             let theScrape = results.data;
 
             console.log('THE SCRAPE:', results.data);
 
             // set the state with scrape results
+            // which holds the data for (1) scrape
             this.setState({
                 scrape__loaded: true,
                 bgb__link: theScrape.bgb__link,
