@@ -14,6 +14,7 @@ class GameDetails extends Component {
             resultsArr: [],
             result__id: 0,
             result__bgg_link: '',
+            result__bgg_id: 0,
             result__name: '',
             result__avg_rating: 0,
             result__avg_time: 0,
@@ -85,10 +86,11 @@ class GameDetails extends Component {
             this.setState({
                 result__id: theGame.id,
                 result__bgg_link: theGame.bgg_link,
+                result__bgg_id: theGame.game_id,
                 result__name: theGame.names,
                 result__avg_rating: theGame.avg_rating,
                 result__avg_time: theGame.avg_time,
-                result__image: theGame.image_url,
+                // result__image: theGame.image_url,
                 result__rank: theGame.rank,
                 result__category: theGame.category,
                 result__mechanic: theGame.mechanic
@@ -103,8 +105,30 @@ class GameDetails extends Component {
 
             }) // end setState
 
+            // Image path in DB is no longer working
+            // Get the image directly from the BGG API instead
+            return axios.get('https://www.boardgamegeek.com/xmlapi2/thing?id=' + this.state.result__bgg_id);
+
+        })
+
+        .then(result => {
+
+            // save the data (the xml) into a variable
+            let parser = new DOMParser();
+            let xml = parser.parseFromString(result.data, 'text/xml');
+            // console.log('RESULT FROM BGG API:', xml);
+
+            // find the image url within the parsed data and set to variable
+            let xmlImageUrl = xml.getElementsByTagName('image')[0].childNodes[0].nodeValue;
+            console.log(xmlImageUrl);
+
+            this.setState({
+                result__image: xmlImageUrl
+            });
+            
             // return a get request to get our scrape data
-            return axios.get(this.props.serverUrl + '/games/scrape?title=' + theGame.names);
+            // return axios.get(this.props.serverUrl + '/games/scrape?title=' + theGame.names);
+            return axios.get(this.props.serverUrl + '/games/scrape?title=' + this.state.result__name);
 
         })
 
@@ -260,7 +284,7 @@ class GameDetails extends Component {
                         <div className="card a--fade-up a--delay-1" ref={this.gameCard}>
                             
                             <figure className="card__image">
-                                <img src={this.state.result__image} title="" alt="" width="" />
+                                <img src={this.state.result__image} title="Game Cover" alt="Boardgame Cover Photo" width="" />
                             </figure>
                             
                             <section className="card__content card__content--pad-left">

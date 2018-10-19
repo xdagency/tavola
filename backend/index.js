@@ -286,8 +286,11 @@ app.listen(PORT, () => {
 
 function scrape(title, callback) {
 
-    // create an empty object to contain all the scrape data
-    let scrapeDetails = {}
+    // create a default object that contains default scrape data
+    let scrapeDetails = {
+        bgb__price: 'N/A',
+        bgb__link: '/'
+    }
 
     // scrape boardgamebliss
     request('https://www.boardgamebliss.com/search?x=0&y=0&q=' + title, function(err, res, body) {
@@ -306,7 +309,6 @@ function scrape(title, callback) {
                 if ($(this).find('.span11 h3').text().toUpperCase() === title.toUpperCase()) {
 
                     // console.log('MATCH FOUND:', title);
-                    
                     // If there's a match update the scrapeDetails object
                     
                     scrapeDetails = {
