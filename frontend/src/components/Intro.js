@@ -25,7 +25,7 @@ class Intro extends Component {
 
                 <div className="card card--alert a--fade-up a--delay-1">
                     <div className="card__content card__content--full">
-                        <p>[Tavola] is currently in beta. If you find any issues or bugs it would be super helpful if you reported them to <a href="mailto:matt@xeno-design.com">matt@xeno-design.com</a>. Thanks!</p>
+                        <p>Tavola is currently in beta. If you find any issues or bugs it would be super helpful if you reported them to <a href="mailto:matt@xeno-design.com">matt@xeno-design.com</a>. Thanks!</p>
                     </div>
                 </div>
 
