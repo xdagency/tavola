@@ -2,113 +2,172 @@
     Grid
 */
 
-.flex {
-    display: flex;
-    flex-direction: row;
-    flex-flow: wrap;
-    &.jc--sa { justify-content: space-around; }
-    &.jc--sb { justify-content: space-between; }
-    &.jc--ce { justify-content: center; }
-    &.ai--st { align-items: flex-start; }
-    &.ai--en { align-items: flex-end; }
-    &.ai--ce { align-items: center; }
-    &.ai--st { align-items: stretch; }
-}
+// TODO: Replace this grid completely with css grid and flexbox
 
-.row {
-    position: relative;
-    margin-bottom: $gutter;
-    overflow: hidden;
+// CSS Grid
+// The grid container
+.grid {
+    display: grid;
+    grid-gap: $padding--xs;
+    // modifer classes for different grid configurations & grid spacing
+    &.gt--two { grid-template-columns: repeat(2, 1fr); }
+    &.gt--three { grid-template-columns: repeat(3, 1fr); }
+    &.gt--four { grid-template-columns: repeat(4, 1fr); }
+    
+    @include bp(break-sm) {
+        grid-gap: $padding--sm;
+    }
+    @include bp(break-lg) {
+        grid-gap: $padding--md;
+    }
 
-    /* when width is greater than max-width + gutters + scrollbar */
-    @include bpany($page--maxwidth + ($gutter * 2) + 8px) {
-        margin-right: -$gutter;
-        margin-left: -$gutter;
+    // Grid items
+    .grid__item {
+        position: relative;
+        // modifier classes for grid items for spanning and positioning
+        &.gi--colspan-2 { grid-column: span 2; }
+        &.gi--colspan-3 { grid-column: span 3; }
+        &.gi--colspan-4 { grid-column: span 4; }
+        &.gi--rowspan-2 { grid-row: span 2; }
+        &.gi--rowspan-3 { grid-row: span 3; }
+        &.gi--rowspan-4 { grid-row: span 4; }
+        // justify self
+        &.js--st { justify-self: start; }
+        &.js--en { justify-self: end; }
+        &.js--ce { justify-self: center; }
+        &.js--sr { justify-self: stretch; }
+        // align self
+        &.as--st { align-self: start; }
+        &.as--en { align-self: end; }
+        &.as--ce { align-self: center; }
+        &.as--sr { align-self: stretch; }
     }
 }
 
-.col {
-    position: relative;
-    padding: 0 $gutter $gutter $gutter;
-    width: 100%; /* no bp all cols 100% width */
-    min-height: 1px;
-    float: left;
 
-    &.as--ce { align-self: center; }
+// Flexbox
+// Flexbox container
+.flex {
+    display: flex;
+    // set items in a column on small devices
+    flex-direction: column;
+    flex-flow: wrap;
+    // modifier classes for alignment/justification/spacing
+    // justify content
+    &.jc--sa { justify-content: space-around; }
+    &.jc--sb { justify-content: space-between; }
+    &.jc--ce { justify-content: center; }
+    // align items
+    &.ai--st { align-items: flex-start; }
+    &.ai--en { align-items: flex-end; }
+    &.ai--ce { align-items: center; }
+    &.ai--sr { align-items: stretch; }
 
-    // testing
-    // border: 1px solid tomato;
-    // background: pink;
-}
-
-// Left aligned column
-.col-left {
-    float: left;
-}
-
-// Right aligned column
-.col-right {
-    float: right;
-}
-
-// Centred column
-.col-center {
-    float: none;
-    margin: 0 auto;
+    @include bp(break-sm) {
+        // change direction to row on larger devices
+        flex-direction: row;
+    }
 }
 
 
-/* Tiny Columns (np bp) */
-.xs9 { width: 75%; }
-.xs8 { width: 66.666%; }
-.xs6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
-.xs4 { width: 33.333%; &:nth-child(3n+1) { clear: left; } }
-.xs3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
 
 
-/* Small Columns */
-@include bp(break-sm) {
 
-    .sm12 { width: 100%; }
-    .sm9 { width: 75%; }
-    .sm8 { width: 66.6666%; }
-    .sm6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
-    .sm4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
-    .sm3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
 
-    .all6 { width: 50%; }
-    .all12 { width: 100%; }
+// .row {
+//     position: relative;
+//     margin-bottom: $gutter;
+//     overflow: hidden;
 
-}
+//     /* when width is greater than max-width + gutters + scrollbar */
+//     @include bpany($page--maxwidth + ($gutter * 2) + 8px) {
+//         margin-right: -$gutter;
+//         margin-left: -$gutter;
+//     }
+// }
 
-/* Medium Columns */
-@include bp(break-md) {
+// .col {
+//     position: relative;
+//     padding: 0 $gutter $gutter $gutter;
+//     width: 100%; /* no bp all cols 100% width */
+//     min-height: 1px;
+//     float: left;
 
-    .md12 { width: 100%; }
-    .md10 { width: 83.3333%; }
-    .md9 { width: 75%; }
-    .md8 { width: 66.6666%; }
-    .md7 { width: 58.3333%; }
-    .md6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
-    .md5 { width: 41.6666%; }
-    .md4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
-    .md3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
-    .md2 { width: 16.6666%; }
+//     &.as--ce { align-self: center; }
 
-}
+//     // testing
+//     // border: 1px solid tomato;
+//     // background: pink;
+// }
 
-/* Large Columns */
-@include bp(break-lg) {
+// // Left aligned column
+// .col-left {
+//     float: left;
+// }
 
-    .lg12 { width: 100%; }
-    .lg10 { width: 83.3333%; }
-    .lg9 { width: 75%; }
-    .lg8 { width: 66.6666%; }
-    .lg7 { width: 58.3333%; }
-    .lg6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
-    .lg5 { width: 41.6666%; }
-    .lg4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
-    .lg3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
-    .lg2 { width: 16.6666%; }
+// // Right aligned column
+// .col-right {
+//     float: right;
+// }
 
-}
+// // Centred column
+// .col-center {
+//     float: none;
+//     margin: 0 auto;
+// }
+
+
+// /* Tiny Columns (np bp) */
+// .xs9 { width: 75%; }
+// .xs8 { width: 66.666%; }
+// .xs6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+// .xs4 { width: 33.333%; &:nth-child(3n+1) { clear: left; } }
+// .xs3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+
+
+// /* Small Columns */
+// @include bp(break-sm) {
+
+//     .sm12 { width: 100%; }
+//     .sm9 { width: 75%; }
+//     .sm8 { width: 66.6666%; }
+//     .sm6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+//     .sm4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
+//     .sm3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+
+//     .all6 { width: 50%; }
+//     .all12 { width: 100%; }
+
+// }
+
+// /* Medium Columns */
+// @include bp(break-md) {
+
+//     .md12 { width: 100%; }
+//     .md10 { width: 83.3333%; }
+//     .md9 { width: 75%; }
+//     .md8 { width: 66.6666%; }
+//     .md7 { width: 58.3333%; }
+//     .md6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+//     .md5 { width: 41.6666%; }
+//     .md4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
+//     .md3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+//     .md2 { width: 16.6666%; }
+
+// }
+
+// /* Large Columns */
+// @include bp(break-lg) {
+
+//     .lg12 { width: 100%; }
+//     .lg10 { width: 83.3333%; }
+//     .lg9 { width: 75%; }
+//     .lg8 { width: 66.6666%; }
+//     .lg7 { width: 58.3333%; }
+//     .lg6 { width: 50%; &:nth-child(2n+1) { clear: left; } }
+//     .lg5 { width: 41.6666%; }
+//     .lg4 { width: 33.3333%; &:nth-child(3n+1) { clear: left; } }
+//     .lg3 { width: 25%; &:nth-child(4n+1) { clear: left; } }
+//     .lg2 { width: 16.6666%; }
+
+// }

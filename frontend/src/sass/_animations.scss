@@ -2,6 +2,8 @@
     Animations
 */
 
+// TODO: Create a robust, but simply, animation library
+
 @keyframes a--fade-up {
     from { margin-top: 12%; opacity: 0; }
     to { margin-top: 0; opacity: 1; }
