@@ -65,13 +65,14 @@
             color: $color__white;
             padding: $padding--xs $padding--sm;
             border-radius: 4px;
-            box-shadow: 0px 8px 36px -4px rgba(0,0,0,0.33);
+            box-shadow: 0px 8px 36px -4px rgba(63,13,178,0.33);
             @include bp(break-md) {
                 padding: $padding--xs+2px $padding--sm+2px;
             }
             &:hover {
                 background: darken($color__3, 16%);
-                box-shadow: 0px 16px 44px -8px rgba(0,0,0,0.28);
+                border-radius: 5px;
+                box-shadow: 0px 16px 44px -8px rgba(63,13,178,0.25);
             }
             &:disabled {
 

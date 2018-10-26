@@ -169,10 +169,20 @@ p {
 // Temp logo
 
 .brand {
-    font-family: $serif;
+    position: absolute;
+    bottom: $padding--xxs;
+    right: $padding--xxs;
+    font-family: "Gamja Flower", "Arial";
+    text-transform: uppercase;
     color: white;
     font-size: 28px;
     opacity: 0.65;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    @include bp(break-md) {
+        bottom: $padding--xs;
+        right: $padding--xs;
+    }
 }
 
 

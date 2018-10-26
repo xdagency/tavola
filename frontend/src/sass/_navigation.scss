@@ -21,23 +21,34 @@ nav.main {
             > a {
                 display: inline-block;
                 font-family: $sans;
-                color: rgba(255,255,255,0.75);
-                font-size: 1rem;
+                color: rgba(255,255,255,0.7);
+                font-size: 1.5rem;
                 text-decoration: none;
                 transition: all 0.22s ease-in-out;
+
+                // hover state for main nav items
+                &:hover {
+                    transform: translateX(12px);
+                    color: rgba(255,255,255,0.88);
+                }
+
+                @include bp(break-md) {
+                    font-size: 2.55rem;
+                }
+
                 &:before {
                     content: " ";
                     opacity: 0;
                     transition: all 0.22s ease-in-out;
                     position: absolute;
-                    border-top: 1px solid white;
-                    width: 24px;
-                    left: -30px;
-                    top: 6px;
+                    border-top: 3px solid white;
+                    width: 40px;
+                    left: -50px;
+                    top: 50%;
                 }
                 &.active {
                     color: white;
-                    transform: translateX(30px);
+                    transform: translateX(50px);
                     &:before {
                         opacity: 1;
                     }
@@ -55,24 +66,20 @@ nav.main {
 
 
 // Sub navigation
-// which is under the header
 
 nav.sub {
-    margin-top: $padding--xs+4px;
-    max-width: 420px;
-    margin: $padding--xs+4px auto 0;
+    // general spacing for subnav
+    margin: $padding--xs auto 0;
     > ul {
         > li {
-            display: inline-block;
-            margin: 0 10px 10px 0;
+            padding: $padding--xxs 0;
             > a {
                 font-family: $sans;
-                color: lighten($color__2, 50%);
-            }
-            &:nth-child(3) {
-                display: none;
-                @include bp(break-sm) {
-                    display: inline-block;
+                color: rgba(255,255,255,0.5);
+
+                // hover for subnav items
+                &:hover {
+                    color: rgba(255,255,255,0.7);
                 }
             }
         }
