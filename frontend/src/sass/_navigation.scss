@@ -7,10 +7,12 @@
 
 nav.main {
     padding: $padding--xs 0 0;
+    opacity: 0;
     @include bp(break-md) {
         padding: $padding--sm 0 0;
     }
     @include bp(break-lg) {
+        opacity: 1;
         padding: $padding--md 0 0;
     }
 }
@@ -90,4 +92,23 @@ nav.main__subnav {
             } // end a
         } // end li
     } // end ul
+}
+
+
+// Hamburger
+
+.hamburger {
+    border: none;
+    background: none;
+    padding: $padding--xxs 0;
+    margin: $padding--xs 0 0;
+    width: 36px;
+    font-size: 1rem;
+    color: white;
+    &:hover {
+        cursor: pointer;
+    }
+    @include bp(break-lg) {
+        display: none;
+    }
 }

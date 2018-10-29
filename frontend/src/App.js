@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart, faBars } from '@fortawesome/free-solid-svg-icons';
 import Intro from './components/Intro';
 import Form__GameProfile from './components/Form__GameProfile';
 import GameDetails from './components/GameDetails';
@@ -11,7 +11,7 @@ import Form__CreateAccount from './components/Form__CreateAccount';
 import Account from './components/Account';
 import NoMatch from './components/NoMatch';
 
-library.add(faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart);
+library.add(faStar, faListOl, faFolderOpen, faArrowLeft, faSyncAlt, faHeart, faBars);
 
 class App extends Component {
 
@@ -120,6 +120,8 @@ class App extends Component {
 
             {/* logo word mark */}
             <figure className="brand">Tav<br />ola</figure>
+
+            <button className="hamburger" role="button" aria-label="Open menu" onClick=""><FontAwesomeIcon className="" icon="bars" /></button>
             
             {/* Main navigation wrapper */}
             <nav className="main">
