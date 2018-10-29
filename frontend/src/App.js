@@ -116,32 +116,45 @@ class App extends Component {
     return (
       <div className="app">
 
-        <section className="page__sidebar">
-          <header className={ 'page__header ' + (this.state.loggedIn ? 'page__header--loggedin' : '') }>
-            <figure className="brand">Tavola</figure>
-            {this.state.loggedIn ? ( <figure className="account">{this.state.user_email}</figure> ) : ( <span></span> )}
+        <section className={ 'page__sidebar' + (this.state.loggedIn ? 'page__header--loggedin' : '') }>
+
+            {/* logo word mark */}
+            <figure className="brand">Tav<br />ola</figure>
+            
+            {/* Main navigation wrapper */}
             <nav className="main">
-              <ul>
-                <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-                <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
-                <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
-                {this.state.loggedIn ?
-                  ( <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li> ) : 
-                  ( <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li> )
-                }
-              </ul>
+
+              {/* show user email if they're logged in */}
+              {this.state.loggedIn ? ( <figure className="account">{this.state.user_email}</figure> ) : ( <span></span> )}
+              
+              {/* Mainnav */}
+              <nav className="main__nav" role="navigation" aria-label="Main navigation">
+                <ul>
+                  <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
+                  <li><NavLink activeClassName="active" to="/profile-builder">Profile Builder</NavLink></li>
+                  <li><NavLink activeClassName="active" to="/suggest">Game Details</NavLink></li>
+                  {/* Change link if logged in or not */}
+                  {this.state.loggedIn ?
+                    ( <li><NavLink activeClassName="active" to="/account">Account &amp; Logout</NavLink></li> ) : 
+                    ( <li><NavLink activeClassName="active" to="/login">Login &amp; Account</NavLink></li> )
+                  }
+                </ul>
+              </nav>
+              
+              {/* Subnav */}
+              <nav className="main__subnav" role="navigation" aria-label="Colophon">
+                <ul>
+                  <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
+                  <li><NavLink to="/terms">Terms of Use</NavLink></li>
+                  <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
+                </ul>
+              </nav>
+
             </nav>
-          </header>
-          <nav className="sub">
-            <ul>
-              <li><a href="mailto:matt@xeno-design.com">Contact</a></li>
-              <li><NavLink to="/terms">Terms of Use</NavLink></li>
-              <li><a href="http://www.xeno-design.com">Created by Xeno Design</a></li>
-            </ul>
-          </nav>
+          
         </section>
 
-        <section className="page__content">
+        <section className="page__content" role="main">
           
           <Switch>
               <Route path="/" exact component={Intro} />

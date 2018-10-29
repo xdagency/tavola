@@ -11,11 +11,12 @@
     text-align: center;
     padding: $padding--xxs 0 0;
 
+    // Any .btn that's a direct child of a btn__container
     > .btn {
         padding: 0 $padding--xxs $padding--xxs;
     }
 
-    // Centering a container of buttons
+    // Centering a container (vert / horz) of buttons within it's container
     &.center {
         position: absolute;
         top: 50%; left: 50%;
@@ -53,6 +54,7 @@
         transition: all 0.18s ease-in-out;
     }
 
+    // add proper cursor and hover effects to buttons when hovered
     > a:hover, button:hover {
         cursor: pointer;
         transform: scale(1.05);

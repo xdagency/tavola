@@ -77,7 +77,7 @@ class GameDetails extends Component {
                 return;
             }
 
-            console.log('FROM THE BACKEND', results.data);
+            // console.log('FROM THE BACKEND', results.data);
 
             // data from endpoint stored in variable
             let theGame = results.data;
@@ -120,7 +120,7 @@ class GameDetails extends Component {
 
             // find the image url within the parsed data and set to variable
             let xmlImageUrl = xml.getElementsByTagName('image')[0].childNodes[0].nodeValue;
-            console.log(xmlImageUrl);
+            // console.log(xmlImageUrl);
 
             this.setState({
                 result__image: xmlImageUrl
@@ -138,8 +138,7 @@ class GameDetails extends Component {
             // data from endpoint stored in variable
             let theScrape = results.data;
 
-            console.log('THE SCRAPE:', results.data);
-
+            // console.log('THE SCRAPE:', results.data);
             // set the state with scrape results
             // which holds the data for (1) scrape
             this.setState({

@@ -3,11 +3,22 @@
 */
 
 
-// Main navigation
-// which is in the header
+// Navigation wrapper
 
 nav.main {
     padding: $padding--xs 0 0;
+    @include bp(break-md) {
+        padding: $padding--sm 0 0;
+    }
+    @include bp(break-lg) {
+        padding: $padding--md 0 0;
+    }
+}
+
+
+// Main navigation
+
+nav.main__nav {
     > ul {
         > li {
             position: relative;
@@ -36,6 +47,7 @@ nav.main {
                     font-size: 2.55rem;
                 }
 
+                // white line to indicate active nav item
                 &:before {
                     content: " ";
                     opacity: 0;
@@ -53,21 +65,15 @@ nav.main {
                         opacity: 1;
                     }
                 }
-            }
-        }
-    }
-    @include bp(break-md) {
-        padding: $padding--sm 0 0;
-    }
-    @include bp(break-lg) {
-        padding: $padding--md 0 0;
-    }
+            } // end a
+        } // end li
+    } // end ul
 }
 
 
 // Sub navigation
 
-nav.sub {
+nav.main__subnav {
     // general spacing for subnav
     margin: $padding--xs auto 0;
     > ul {
@@ -81,7 +87,7 @@ nav.sub {
                 &:hover {
                     color: rgba(255,255,255,0.7);
                 }
-            }
-        }
-    }
+            } // end a
+        } // end li
+    } // end ul
 }

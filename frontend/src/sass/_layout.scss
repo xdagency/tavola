@@ -18,17 +18,13 @@ html, body {
 // need to look at flex here
 .app {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     width: 100%;
     max-width: 1500px;
     min-height: 100vh;
     height: 100%;
     background: white;
-    box-shadow: 11px 0px 42px -10px rgba(0,0,0,0.25);
-    @include bp(break-xl) {
-        flex-direction: row;
-    }
 }
 
 // Wrappers
@@ -66,13 +62,13 @@ html, body {
 
 .page__content {
     // background: tomato;
-    width: 100%;
+    width: auto;
     flex-grow: 1;
     display: flex;
     // border: 1px solid tomato;
     // background-color: #f5f3f3;
     background: white;
-    @include bp(break-xl) {
+    @include bp(break-lg) {
         display: block;
         width: 61.8%;
     }
@@ -80,11 +76,14 @@ html, body {
 
 .page__sidebar {
     background: $color__3;
-    width: 100%;
-    padding: $padding--sm $padding--sm $padding--md;
-    @include bp(break-xl) {
+    background: linear-gradient(260deg, $color__3, $color__5);
+    background-size: 200% 200%;
+    background-position: -100% -100%;
+    width: 48px;
+    padding: $padding--sm;
+    @include bp(break-lg) {
         width: 38.2%;
-        padding: $padding--lg $padding--lg $padding--lg+32px;
+        padding: $padding--lg;
     }
 }
 

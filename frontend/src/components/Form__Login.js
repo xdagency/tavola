@@ -59,7 +59,8 @@ class Form__Login extends Component {
             })
             .catch(error => {
                 //if there was an error trying to login
-                console.log('ERROR:', error);
+                // console.log('ERROR:', error);
+                // Set the state of the login error message, and display the error block
                 this.setState({
                     loginError: 'That email/password combination does not match',
                     loginErrorClass: 'block'

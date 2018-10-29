@@ -170,19 +170,15 @@ p {
 
 .brand {
     position: absolute;
-    bottom: $padding--xxs;
-    right: $padding--xxs;
-    font-family: "Gamja Flower", "Arial";
+    top: $padding--xs;
+    left: $padding--xs;
+    font-family: $sans;
     text-transform: uppercase;
     color: white;
-    font-size: 28px;
+    font-size: 18px;
     opacity: 0.65;
-    writing-mode: vertical-rl;
+    writing-mode: vertical-lr;
     text-orientation: upright;
-    @include bp(break-md) {
-        bottom: $padding--xs;
-        right: $padding--xs;
-    }
 }
 
 
