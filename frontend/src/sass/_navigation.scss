@@ -6,13 +6,18 @@
 // Navigation wrapper
 
 nav.main {
+    position: relative;
     padding: $padding--xs 0 0;
     opacity: 0;
+    transform: translateY(-200%);
+    transition: opacity 0.22s ease-in-out;
+    transition-delay: 0s;
     @include bp(break-md) {
         padding: $padding--sm 0 0;
     }
     @include bp(break-lg) {
         opacity: 1;
+        transform: translateX(0);
         padding: $padding--md 0 0;
     }
 }
@@ -98,6 +103,9 @@ nav.main__subnav {
 // Hamburger
 
 .hamburger {
+    position: absolute;
+    z-index: $zOverNav;
+    top: $padding--lg; right: $padding--xs;
     border: none;
     background: none;
     padding: $padding--xxs 0;

@@ -169,6 +169,8 @@ p {
 // Temp logo
 
 .brand {
+    position: absolute;
+    top: $padding--xs; right: $padding--xs;
     font-family: $sans;
     text-transform: uppercase;
     color: white;

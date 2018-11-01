@@ -26,6 +26,9 @@ class App extends Component {
         searchParams: '',
         submitted: false,
 
+        // nav open/closed
+        nav_status: 'nav--closed',
+
         // server stuff
         // serverUrl: 'https://tavolaapp.herokuapp.com',
         serverUrl: 'http://localhost:8181',
@@ -104,6 +107,21 @@ class App extends Component {
   }
 
 
+  /* ==================== */
+  // OPEN NAV
+  /* ==================== */
+
+  toggleNav = () => {
+
+    let nav_status = this.state.nav_status;
+    nav_status === 'nav--closed' ? nav_status = 'nav--open' : nav_status = 'nav--closed';
+
+    this.setState({
+      nav_status: nav_status
+    })
+  }
+
+
   render() {
 
     // check if user has submitted a set of search parameters
@@ -114,14 +132,14 @@ class App extends Component {
     }
 
     return (
-      <div className="app">
+      <div className={'app ' + this.state.nav_status}>
 
         <section className={ 'page__sidebar' + (this.state.loggedIn ? 'page__header--loggedin' : '') }>
 
             {/* logo word mark */}
             <figure className="brand">Tav<br />ola</figure>
 
-            <button className="hamburger" role="button" aria-label="Open menu" onClick=""><FontAwesomeIcon className="" icon="bars" /></button>
+            <button className="hamburger" role="button" aria-label="Open menu" onClick={this.toggleNav}><FontAwesomeIcon className="" icon="bars" /></button>
             
             {/* Main navigation wrapper */}
             <nav className="main">
