@@ -10,7 +10,7 @@ class Intro extends Component {
 
     render() {
         return (
-            <div className="wrapper" style={{ backgroundImage: 'url(' + bg +')' }}>
+            <div className="wrapper">
                 
                 <div className="card a--fade-up">
                     <div className="card__content card__content--full">
